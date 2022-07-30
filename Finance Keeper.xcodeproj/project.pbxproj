@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACECE2895502000EE31B6 /* AppDelegate.swift */; };
 		478ACED12895502000EE31B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACED02895502000EE31B6 /* SceneDelegate.swift */; };
-		478ACED32895502000EE31B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACED22895502000EE31B6 /* ViewController.swift */; };
+		478ACED32895502000EE31B6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACED22895502000EE31B6 /* MainViewController.swift */; };
 		478ACED82895502100EE31B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478ACED72895502100EE31B6 /* Assets.xcassets */; };
 		478ACEDB2895502100EE31B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478ACED92895502100EE31B6 /* LaunchScreen.storyboard */; };
 		478ACEE92895509C00EE31B6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 478ACEE82895509C00EE31B6 /* .gitignore */; };
+		478ACEEB2895543C00EE31B6 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACEEA2895543C00EE31B6 /* CustomTabBarController.swift */; };
+		478ACEED2895548A00EE31B6 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACEEC2895548A00EE31B6 /* NewsViewController.swift */; };
+		478ACEEF2895549200EE31B6 /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACEEE2895549200EE31B6 /* StocksViewController.swift */; };
+		478ACEF12895549B00EE31B6 /* CryptoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACEF02895549B00EE31B6 /* CryptoViewController.swift */; };
+		478ACEF428955B7000EE31B6 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACEF328955B7000EE31B6 /* UIColor + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		478ACECB2895502000EE31B6 /* Finance Keeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finance Keeper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		478ACECE2895502000EE31B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		478ACED02895502000EE31B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		478ACED22895502000EE31B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		478ACED22895502000EE31B6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		478ACED72895502100EE31B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		478ACEDA2895502100EE31B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		478ACEDC2895502100EE31B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		478ACEE82895509C00EE31B6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		478ACEEA2895543C00EE31B6 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		478ACEEC2895548A00EE31B6 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		478ACEEE2895549200EE31B6 /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
+		478ACEF02895549B00EE31B6 /* CryptoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoViewController.swift; sourceTree = "<group>"; };
+		478ACEF328955B7000EE31B6 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,11 @@
 			isa = PBXGroup;
 			children = (
 				478ACEE52895506100EE31B6 /* Main */,
+				478ACEF62895624100EE31B6 /* News */,
+				478ACEF72895625200EE31B6 /* Stocks */,
+				478ACEF82895625B00EE31B6 /* Crypto */,
+				478ACEF528955F5700EE31B6 /* CustomTabBarController */,
+				478ACEF228955B5D00EE31B6 /* Extensions */,
 				478ACEE62895506500EE31B6 /* Services */,
 				478ACEE32895504700EE31B6 /* Helpers */,
 				478ACEE22895504200EE31B6 /* Models */,
@@ -92,7 +107,7 @@
 		478ACEE52895506100EE31B6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				478ACED22895502000EE31B6 /* ViewController.swift */,
+				478ACED22895502000EE31B6 /* MainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -113,6 +128,46 @@
 				478ACED92895502100EE31B6 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		478ACEF228955B5D00EE31B6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				478ACEF328955B7000EE31B6 /* UIColor + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		478ACEF528955F5700EE31B6 /* CustomTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				478ACEEA2895543C00EE31B6 /* CustomTabBarController.swift */,
+			);
+			path = CustomTabBarController;
+			sourceTree = "<group>";
+		};
+		478ACEF62895624100EE31B6 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				478ACEEC2895548A00EE31B6 /* NewsViewController.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		478ACEF72895625200EE31B6 /* Stocks */ = {
+			isa = PBXGroup;
+			children = (
+				478ACEEE2895549200EE31B6 /* StocksViewController.swift */,
+			);
+			path = Stocks;
+			sourceTree = "<group>";
+		};
+		478ACEF82895625B00EE31B6 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				478ACEF02895549B00EE31B6 /* CryptoViewController.swift */,
+			);
+			path = Crypto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,8 +241,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				478ACED32895502000EE31B6 /* ViewController.swift in Sources */,
+				478ACED32895502000EE31B6 /* MainViewController.swift in Sources */,
+				478ACEF428955B7000EE31B6 /* UIColor + Extension.swift in Sources */,
 				478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */,
+				478ACEEB2895543C00EE31B6 /* CustomTabBarController.swift in Sources */,
+				478ACEF12895549B00EE31B6 /* CryptoViewController.swift in Sources */,
+				478ACEED2895548A00EE31B6 /* NewsViewController.swift in Sources */,
+				478ACEEF2895549200EE31B6 /* StocksViewController.swift in Sources */,
 				478ACED12895502000EE31B6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
