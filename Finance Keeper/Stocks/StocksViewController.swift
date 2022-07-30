@@ -11,7 +11,7 @@
 
 import UIKit
 
-class StocksViewController: UIViewController {
+final class StocksViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
