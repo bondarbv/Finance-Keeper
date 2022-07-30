@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		473042CD28956EAA00817A7A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473042CC28956EAA00817A7A /* NetworkManager.swift */; };
 		478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACECE2895502000EE31B6 /* AppDelegate.swift */; };
 		478ACED12895502000EE31B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACED02895502000EE31B6 /* SceneDelegate.swift */; };
 		478ACED32895502000EE31B6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACED22895502000EE31B6 /* MainViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		473042CC28956EAA00817A7A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		478ACECB2895502000EE31B6 /* Finance Keeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finance Keeper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		478ACECE2895502000EE31B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		478ACED02895502000EE31B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		478ACEE62895506500EE31B6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				473042CC28956EAA00817A7A /* NetworkManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				473042CD28956EAA00817A7A /* NetworkManager.swift in Sources */,
 				478ACED32895502000EE31B6 /* MainViewController.swift in Sources */,
 				478ACEF428955B7000EE31B6 /* UIColor + Extension.swift in Sources */,
 				478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */,
