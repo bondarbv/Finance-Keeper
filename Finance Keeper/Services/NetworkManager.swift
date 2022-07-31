@@ -13,24 +13,22 @@ import Foundation
 
 final class NetworkManager {
     
-    static func fetch<T: Codable>(url: URL?, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+    static func fetch<T: Codable>(url: URL?, model: T.Type, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        
         guard let url = url else { return }
         
         let dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let error = error else {
+            if let error = error {
+                completionHandler(.failure(error))
                 return
-            }
-            
-            guard let data = data else {
-                completion(.failure(error))
-                return
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(model.self, from: data)
-                completion(.success(result))
-            } catch {
-                completion(.failure(error))
+            } else if let data = data {
+                do {
+                    let result = try JSONDecoder().decode(model.self, from: data)
+                    completionHandler(.success(result))
+                }
+                catch let error {
+                    print(error)
+                }
             }
         }
         dataTask.resume()
