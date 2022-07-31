@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		473042CD28956EAA00817A7A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473042CC28956EAA00817A7A /* NetworkManager.swift */; };
+		473042CF289572E700817A7A /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473042CE289572E700817A7A /* CryptoModel.swift */; };
+		474CB69728969EFF00D58038 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474CB69628969EFF00D58038 /* APIManager.swift */; };
+		4761B5DB2895BFCC007FFB91 /* TableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761B5DA2895BFCC007FFB91 /* TableView + Extension.swift */; };
+		4761B5DD2895C007007FFB91 /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761B5DC2895C007007FFB91 /* CryptoTableViewCell.swift */; };
+		4761B5DF2895C288007FFB91 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761B5DE2895C288007FFB91 /* Box.swift */; };
+		4761B5E22895C2B1007FFB91 /* CryptoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761B5E12895C2B1007FFB91 /* CryptoViewModel.swift */; };
 		478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACECE2895502000EE31B6 /* AppDelegate.swift */; };
 		478ACED12895502000EE31B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACED02895502000EE31B6 /* SceneDelegate.swift */; };
 		478ACED32895502000EE31B6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ACED22895502000EE31B6 /* MainViewController.swift */; };
@@ -23,6 +29,12 @@
 
 /* Begin PBXFileReference section */
 		473042CC28956EAA00817A7A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		473042CE289572E700817A7A /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
+		474CB69628969EFF00D58038 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		4761B5DA2895BFCC007FFB91 /* TableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView + Extension.swift"; sourceTree = "<group>"; };
+		4761B5DC2895C007007FFB91 /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
+		4761B5DE2895C288007FFB91 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		4761B5E12895C2B1007FFB91 /* CryptoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoViewModel.swift; sourceTree = "<group>"; };
 		478ACECB2895502000EE31B6 /* Finance Keeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finance Keeper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		478ACECE2895502000EE31B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		478ACED02895502000EE31B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4761B5E02895C29E007FFB91 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4761B5DC2895C007007FFB91 /* CryptoTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		478ACEC22895502000EE31B6 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +106,7 @@
 		478ACEE22895504200EE31B6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				473042CE289572E700817A7A /* CryptoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -93,6 +114,7 @@
 		478ACEE32895504700EE31B6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4761B5DE2895C288007FFB91 /* Box.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -118,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				473042CC28956EAA00817A7A /* NetworkManager.swift */,
+				474CB69628969EFF00D58038 /* APIManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -168,7 +191,10 @@
 		478ACEF82895625B00EE31B6 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				4761B5E02895C29E007FFB91 /* Cell */,
 				478ACEF02895549B00EE31B6 /* CryptoViewController.swift */,
+				4761B5E12895C2B1007FFB91 /* CryptoViewModel.swift */,
+				4761B5DA2895BFCC007FFB91 /* TableView + Extension.swift */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -246,11 +272,17 @@
 			files = (
 				473042CD28956EAA00817A7A /* NetworkManager.swift in Sources */,
 				478ACED32895502000EE31B6 /* MainViewController.swift in Sources */,
+				4761B5DB2895BFCC007FFB91 /* TableView + Extension.swift in Sources */,
+				4761B5E22895C2B1007FFB91 /* CryptoViewModel.swift in Sources */,
 				478ACEF428955B7000EE31B6 /* UIColor + Extension.swift in Sources */,
 				478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */,
+				473042CF289572E700817A7A /* CryptoModel.swift in Sources */,
+				4761B5DF2895C288007FFB91 /* Box.swift in Sources */,
 				478ACEEB2895543C00EE31B6 /* CustomTabBarController.swift in Sources */,
 				478ACEF12895549B00EE31B6 /* CryptoViewController.swift in Sources */,
+				4761B5DD2895C007007FFB91 /* CryptoTableViewCell.swift in Sources */,
 				478ACEED2895548A00EE31B6 /* NewsViewController.swift in Sources */,
+				474CB69728969EFF00D58038 /* APIManager.swift in Sources */,
 				478ACEEF2895549200EE31B6 /* StocksViewController.swift in Sources */,
 				478ACED12895502000EE31B6 /* SceneDelegate.swift in Sources */,
 			);
