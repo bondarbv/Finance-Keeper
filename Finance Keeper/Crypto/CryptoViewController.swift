@@ -28,8 +28,8 @@ final class CryptoViewController: UIViewController {
             case .success(let crypto):
                     self.crypto = crypto
                     self.crypto?.symbols.removeAll(where: { $0.symbol.contains("USDT") == false })
-                DispatchQueue.main.async { [weak self] in
-                    self?.cryptoTableView.reloadData()
+                DispatchQueue.main.async { [unowned self] in
+                    self.cryptoTableView.reloadData()
                 }
             case .failure(let error):
                 print(error)

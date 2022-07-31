@@ -1,6 +1,6 @@
 //
 // Finance Keeper
-// TableView + Extension.swift
+// CryptoTableView + Extension.swift
 
 // Created by Bohdan Bondar on 30.07.2022 at 10:36 PM.
 // Copyright (c) 2022 Bohdan Bondar. All rights reserved.
@@ -11,7 +11,7 @@
 
 import UIKit
 
-extension CryptoViewController: UITableViewDelegate, UITableViewDataSource {
+extension CryptoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         crypto?.symbols.count ?? 0
     }
@@ -23,5 +23,9 @@ extension CryptoViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+}
+
+extension CryptoViewController: UITableViewDelegate {
+    
 }
 

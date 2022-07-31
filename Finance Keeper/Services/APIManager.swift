@@ -11,6 +11,9 @@
 
 import Foundation
 
+fileprivate let newsAPIKey = "e9a299488de241d0a29fa210e7cd9905"
+
 struct APIManager {
+    static var news = URL(string: "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=\(newsAPIKey)")
     static var binance = URL(string: "https://www.binance.com/api/v3/exchangeInfo")
 }
