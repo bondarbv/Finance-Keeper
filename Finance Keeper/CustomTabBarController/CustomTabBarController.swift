@@ -70,10 +70,17 @@ final class CustomTabBarController: UITabBarController {
         roundLayer.path = bezierPath.cgPath
         roundLayer.fillColor = UIColor.tabBarBackgroundColor.cgColor
         
+        let appearance = UITabBarAppearance()
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tabBarUnselectedItemColor]
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tabBarSelectedItemColor]
+        appearance.stackedLayoutAppearance.normal.iconColor = UIColor.tabBarUnselectedItemColor
+        appearance.stackedLayoutAppearance.selected.iconColor = UIColor.tabBarSelectedItemColor
+        appearance.backgroundEffect = .none
+        appearance.shadowColor = .clear
+        
         tabBar.layer.insertSublayer(roundLayer, at: 0)
         tabBar.itemWidth = width / 4
         tabBar.itemPositioning = .centered
-        tabBar.tintColor = UIColor.tabBarSelectedItemColor
-        tabBar.unselectedItemTintColor = UIColor.tabBarUnselectedItemColor
+        tabBar.standardAppearance = appearance
     }
 }

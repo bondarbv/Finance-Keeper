@@ -49,7 +49,7 @@ final class CryptoViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             cryptoTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            cryptoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            cryptoTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             cryptoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cryptoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
