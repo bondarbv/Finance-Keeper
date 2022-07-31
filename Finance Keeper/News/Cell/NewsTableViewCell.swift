@@ -1,8 +1,8 @@
 //
 // Finance Keeper
-// CryptoTableViewCell.swift
+// NewsTableViewCell.swift
 
-// Created by Bohdan Bondar on 30.07.2022 at 10:37 PM.
+// Created by Bohdan Bondar on 31.07.2022 at 5:12 PM.
 // Copyright (c) 2022 Bohdan Bondar. All rights reserved.
  
 // GitHub: https://github.com/bondarbv
@@ -11,12 +11,12 @@
 
 import UIKit
 
-final class CryptoTableViewCell: UITableViewCell {
+final class NewsTableViewCell: UITableViewCell {
     
-    static var id = "CryptoTableViewCell"
+    static var id = "NewsTableViewCell"
     
     private let label = UILabel()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
@@ -26,8 +26,9 @@ final class CryptoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell(crypto: CryptoModel, index: IndexPath) {
-        label.text = crypto.symbols[index.row].symbol
+    func setupCell(news: NewsModel, index: IndexPath) {
+        label.numberOfLines = 0
+        label.text = news.articles[index.row].title
     }
     
     private func layout() {
@@ -37,7 +38,9 @@ final class CryptoTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor),
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
 }

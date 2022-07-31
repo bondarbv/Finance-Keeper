@@ -23,7 +23,9 @@ final class NetworkManager {
                 return
             } else if let data = data {
                 do {
-                    let result = try JSONDecoder().decode(model.self, from: data)
+                    let decoder =  JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    let result = try decoder.decode(model.self, from: data)
                     completionHandler(.success(result))
                 }
                 catch let error {
