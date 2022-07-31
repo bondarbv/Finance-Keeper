@@ -23,7 +23,7 @@ final class CryptoViewController: UIViewController {
         navigationItem.title = "Crypto"
         navigationController?.navigationBar.prefersLargeTitles = true
         configureTableView()
-        NetworkManager.fetch(url: APIManager.binance, model: CryptoModel.self) { result in
+        NetworkManager.fetch(url: APIManager.crypto, model: CryptoModel.self) { result in
             switch result {
             case .success(let crypto):
                     self.crypto = crypto

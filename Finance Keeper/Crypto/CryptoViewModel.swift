@@ -25,7 +25,7 @@ class CryptoViewModel: CryptoViewModelProtocol {
     }
     
     func fetchCrypto(completion: @escaping () -> Void) {
-        NetworkManager.fetch(url: APIManager.binance, model: CryptoModel.self) { result in
+        NetworkManager.fetch(url: APIManager.crypto, model: CryptoModel.self) { result in
             switch result {
             case .success(let crypto):
                 print(crypto)

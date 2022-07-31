@@ -28,6 +28,10 @@
 		47ECB4CF2896C15400566D24 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4CE2896C15400566D24 /* NewsModel.swift */; };
 		47ECB4D12896C4AA00566D24 /* NewsTableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D02896C4AA00566D24 /* NewsTableView + Extension.swift */; };
 		47ECB4D32896C53E00566D24 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D22896C53E00566D24 /* NewsTableViewCell.swift */; };
+		47ECB4D62896DB4800566D24 /* StocksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D52896DB4800566D24 /* StocksModel.swift */; };
+		47ECB4D82896DBAA00566D24 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D72896DBAA00566D24 /* APIKeys.swift */; };
+		47ECB4DA2896F9FB00566D24 /* StocksTableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D92896F9FB00566D24 /* StocksTableView + Extension.swift */; };
+		47ECB4DD2896FA2B00566D24 /* StocksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4DC2896FA2B00566D24 /* StocksTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,10 @@
 		47ECB4CE2896C15400566D24 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		47ECB4D02896C4AA00566D24 /* NewsTableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsTableView + Extension.swift"; sourceTree = "<group>"; };
 		47ECB4D22896C53E00566D24 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		47ECB4D52896DB4800566D24 /* StocksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksModel.swift; sourceTree = "<group>"; };
+		47ECB4D72896DBAA00566D24 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		47ECB4D92896F9FB00566D24 /* StocksTableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StocksTableView + Extension.swift"; sourceTree = "<group>"; };
+		47ECB4DC2896FA2B00566D24 /* StocksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,7 @@
 			children = (
 				473042CE289572E700817A7A /* CryptoModel.swift */,
 				47ECB4CE2896C15400566D24 /* NewsModel.swift */,
+				47ECB4D52896DB4800566D24 /* StocksModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,6 +157,7 @@
 			children = (
 				473042CC28956EAA00817A7A /* NetworkManager.swift */,
 				474CB69628969EFF00D58038 /* APIManager.swift */,
+				47ECB4D72896DBAA00566D24 /* APIKeys.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -192,7 +202,9 @@
 		478ACEF72895625200EE31B6 /* Stocks */ = {
 			isa = PBXGroup;
 			children = (
+				47ECB4DB2896FA2300566D24 /* Cell */,
 				478ACEEE2895549200EE31B6 /* StocksViewController.swift */,
+				47ECB4D92896F9FB00566D24 /* StocksTableView + Extension.swift */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
@@ -212,6 +224,14 @@
 			isa = PBXGroup;
 			children = (
 				47ECB4D22896C53E00566D24 /* NewsTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		47ECB4DB2896FA2300566D24 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				47ECB4DC2896FA2B00566D24 /* StocksTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -291,10 +311,14 @@
 				478ACED32895502000EE31B6 /* MainViewController.swift in Sources */,
 				4761B5DB2895BFCC007FFB91 /* CryptoTableView + Extension.swift in Sources */,
 				4761B5E22895C2B1007FFB91 /* CryptoViewModel.swift in Sources */,
+				47ECB4DD2896FA2B00566D24 /* StocksTableViewCell.swift in Sources */,
 				478ACEF428955B7000EE31B6 /* UIColor + Extension.swift in Sources */,
 				478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */,
+				47ECB4D82896DBAA00566D24 /* APIKeys.swift in Sources */,
 				473042CF289572E700817A7A /* CryptoModel.swift in Sources */,
 				4761B5DF2895C288007FFB91 /* Box.swift in Sources */,
+				47ECB4D62896DB4800566D24 /* StocksModel.swift in Sources */,
+				47ECB4DA2896F9FB00566D24 /* StocksTableView + Extension.swift in Sources */,
 				47ECB4D32896C53E00566D24 /* NewsTableViewCell.swift in Sources */,
 				47ECB4CF2896C15400566D24 /* NewsModel.swift in Sources */,
 				478ACEEB2895543C00EE31B6 /* CustomTabBarController.swift in Sources */,
