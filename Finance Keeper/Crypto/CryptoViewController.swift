@@ -4,7 +4,7 @@
 
 // Created by Bohdan Bondar on 30.07.2022 at 2:59 PM.
 // Copyright (c) 2022 Bohdan Bondar. All rights reserved.
- 
+
 // GitHub: https://github.com/bondarbv
 // Linkedin: https://www.linkedin.com/in/bondarbv-ios/
 
@@ -12,10 +12,18 @@
 import UIKit
 
 final class CryptoViewController: UIViewController {
-
+    
     private var cryptoTableView: UITableView!
     
-    var crypto: CryptoModel?
+    var cryptoViewModel: CryptoViewModelProtocol! {
+        didSet {
+            cryptoViewModel.fetchCrypto { [unowned self] in
+                DispatchQueue.main.async {
+                    self.cryptoTableView.reloadData()
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,18 +31,7 @@ final class CryptoViewController: UIViewController {
         navigationItem.title = "Crypto"
         navigationController?.navigationBar.prefersLargeTitles = true
         configureTableView()
-        NetworkManager.fetch(url: APIManager.crypto, model: CryptoModel.self) { result in
-            switch result {
-            case .success(let crypto):
-                    self.crypto = crypto
-                    self.crypto?.symbols.removeAll(where: { $0.symbol.contains("USDT") == false })
-                DispatchQueue.main.async { [unowned self] in
-                    self.cryptoTableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        cryptoViewModel = CryptoViewModel()
     }
     
     private func configureTableView() {
