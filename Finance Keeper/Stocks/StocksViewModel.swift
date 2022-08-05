@@ -13,12 +13,16 @@ import Foundation
 
 protocol StocksViewModelProtocol {
     var stocks: StocksModel { get }
-    func fetchStocks(completion: @escaping () -> Void)
     func numberOfRows() -> Int
+    func fetchStocks(completion: @escaping () -> Void)
 }
 
-class StocksViewModel: StocksViewModelProtocol {
+final class StocksViewModel: StocksViewModelProtocol {
     var stocks: StocksModel = StocksModel(quoteSummary: QuoteSummary(result: []))
+    
+    func numberOfRows() -> Int {
+        stocks.quoteSummary.result.count
+    }
     
     func fetchStocks(completion: @escaping () -> Void) {
         NetworkManager.fetch(url: APIManager.stocks, model: StocksModel.self) { [unowned self] result in
@@ -30,9 +34,5 @@ class StocksViewModel: StocksViewModelProtocol {
                 print(error)
             }
         }
-    }
-    
-    func numberOfRows() -> Int {
-        stocks.quoteSummary.result.count
     }
 }

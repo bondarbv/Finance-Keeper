@@ -13,7 +13,15 @@ import UIKit
 
 final class NewsViewController: UIViewController {
     
-    var news: NewsModel?
+    var newsViewModel: NewsViewModelProtocol! {
+        didSet {
+            newsViewModel.fetchNews { [unowned self] in
+                DispatchQueue.main.async {
+                    self.newsTableView.reloadData()
+                }
+            }
+        }
+    }
     
     private var newsTableView: UITableView!
     
@@ -23,17 +31,7 @@ final class NewsViewController: UIViewController {
         navigationItem.title = "News"
         navigationController?.navigationBar.prefersLargeTitles = true
         configureTableView()
-        NetworkManager.fetch(url: APIManager.news, model: NewsModel.self) { result in
-            switch result {
-            case .success(let news):
-                self.news = news
-                DispatchQueue.main.async { [unowned self] in
-                    self.newsTableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        newsViewModel = NewsViewModel()
     }
     
     private func configureTableView() {
