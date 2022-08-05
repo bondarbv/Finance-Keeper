@@ -13,14 +13,12 @@ import UIKit
 
 extension CryptoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        crypto?.symbols.count ?? 0
+        cryptoViewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTableViewCell.id) as! CryptoTableViewCell
-        if let crypto = crypto {
-            cell.setupCell(crypto: crypto, index: indexPath)
-        }
+        cell.setupCell(crypto: cryptoViewModel.crypto, index: indexPath)
         return cell
     }
 }
