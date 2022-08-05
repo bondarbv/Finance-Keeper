@@ -13,8 +13,6 @@ import UIKit
 
 final class CryptoViewController: UIViewController {
     
-    private var cryptoTableView: UITableView!
-    
     var cryptoViewModel: CryptoViewModelProtocol! {
         didSet {
             cryptoViewModel.fetchCrypto { [unowned self] in
@@ -24,6 +22,8 @@ final class CryptoViewController: UIViewController {
             }
         }
     }
+    
+    private var cryptoTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
