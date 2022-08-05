@@ -13,7 +13,15 @@ import UIKit
 
 final class StocksViewController: UIViewController {
     
-    var stocks: StocksModel?
+    var stocksViewModel: StocksViewModelProtocol! {
+        didSet {
+            stocksViewModel.fetchStocks { [unowned self] in
+                DispatchQueue.main.async {
+                    self.stocksTableView.reloadData()
+                }
+            }
+        }
+    }
 
     private var stocksTableView = UITableView()
     
@@ -23,17 +31,7 @@ final class StocksViewController: UIViewController {
         navigationItem.title = "Stocks"
         navigationController?.navigationBar.prefersLargeTitles = true
         configureTableView()
-        NetworkManager.fetch(url: APIManager.stocks, model: StocksModel.self) { result in
-            switch result {
-            case .success(let stocks):
-                self.stocks = stocks
-                DispatchQueue.main.async { [unowned self] in
-                    self.stocksTableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        stocksViewModel = StocksViewModel()
     }
     
     private func configureTableView() {
