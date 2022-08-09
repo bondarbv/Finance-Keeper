@@ -12,23 +12,23 @@
 import Foundation
 
 protocol NewsViewModelProtocol {
-    var news: NewsModel { get }
+    var news: Box<NewsModel> { get }
     func numberOfRows() -> Int
     func fetchNews(completion: @escaping () -> Void)
 }
 
 final class NewsViewModel: NewsViewModelProtocol {
-    var news: NewsModel = NewsModel(status: "", totalResults: 0, articles: [])
+    var news: Box<NewsModel> = Box(NewsModel(status: "", totalResults: 0, articles: []))
     
     func numberOfRows() -> Int {
-        news.articles.count
+        news.value.articles.count
     }
     
     func fetchNews(completion: @escaping () -> Void) {
         NetworkManager.fetch(url: APIManager.news, model: NewsModel.self) { [unowned self] result in
             switch result {
             case .success(let news):
-                self.news = news
+                self.news.value = news
                 completion()
             case .failure(let error):
                 print(error)

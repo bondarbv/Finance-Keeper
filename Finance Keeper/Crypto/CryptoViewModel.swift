@@ -15,9 +15,11 @@ protocol CryptoViewModelProtocol {
     var crypto: CryptoModel { get }
     func numberOfRows() -> Int
     func fetchCrypto(completion: @escaping () -> Void)
+    func cryptoCellViewModel(at indexPath: IndexPath) -> CryptoCellViewModelProtocol
 }
 
 final class CryptoViewModel: CryptoViewModelProtocol {
+    
     var crypto: CryptoModel = CryptoModel(symbols: [])
     
     func numberOfRows() -> Int {
@@ -35,5 +37,9 @@ final class CryptoViewModel: CryptoViewModelProtocol {
                 print(error)
             }
         }
+    }
+    
+    func cryptoCellViewModel(at indexPath: IndexPath) -> CryptoCellViewModelProtocol {
+        CryptoCellViewModel(crypto: crypto.symbols[indexPath.row])
     }
 }

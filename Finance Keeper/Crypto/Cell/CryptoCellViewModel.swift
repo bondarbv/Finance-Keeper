@@ -12,7 +12,14 @@
 import Foundation
 
 protocol CryptoCellViewModelProtocol {
+    var cryptoName: Box<String> { get }
+    init(crypto: Crypto)
 }
 
 class CryptoCellViewModel: CryptoCellViewModelProtocol {
+    var cryptoName: Box<String> = Box("")
+    
+    required init(crypto: Crypto) {
+        self.cryptoName.value = crypto.symbol
+    }
 }

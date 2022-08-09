@@ -12,23 +12,23 @@
 import Foundation
 
 protocol StocksViewModelProtocol {
-    var stocks: StocksModel { get }
+    var stocks: Box<StocksModel> { get }
     func numberOfRows() -> Int
     func fetchStocks(completion: @escaping () -> Void)
 }
 
 final class StocksViewModel: StocksViewModelProtocol {
-    var stocks: StocksModel = StocksModel(quoteSummary: QuoteSummary(result: []))
+    var stocks: Box<StocksModel> = Box(StocksModel(quoteSummary: QuoteSummary(result: [])))
     
     func numberOfRows() -> Int {
-        stocks.quoteSummary.result.count
+        stocks.value.quoteSummary.result.count
     }
     
     func fetchStocks(completion: @escaping () -> Void) {
         NetworkManager.fetch(url: APIManager.stocks, model: StocksModel.self) { [unowned self] result in
             switch result {
             case .success(let stocks):
-                self.stocks = stocks
+                self.stocks.value = stocks
                 completion()
             case .failure(let error):
                 print(error)
