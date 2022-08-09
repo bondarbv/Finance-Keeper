@@ -18,7 +18,7 @@ extension StocksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StocksTableViewCell.id) as! StocksTableViewCell
-        cell.setupCell(stocks: stocksViewModel.stocks)
+        cell.setupCell(stocks: stocksViewModel.stocks.value)
         return cell
     }
 }

@@ -4,7 +4,7 @@
 
 // Created by Bohdan Bondar on 30.07.2022 at 10:37 PM.
 // Copyright (c) 2022 Bohdan Bondar. All rights reserved.
- 
+
 // GitHub: https://github.com/bondarbv
 // Linkedin: https://www.linkedin.com/in/bondarbv-ios/
 
@@ -13,9 +13,19 @@ import UIKit
 
 final class CryptoTableViewCell: UITableViewCell {
     
+    var cryptoCellViewModel: CryptoCellViewModelProtocol! {
+        didSet {
+            cryptoCellViewModel.cryptoName.bind { [unowned self] value in
+                DispatchQueue.main.async {
+                    self.cryptoNameLabel.text = value
+                }
+            }
+        }
+    }
+    
     static var id = "CryptoTableViewCell"
     
-    private let label = UILabel()
+    private let cryptoNameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,18 +36,14 @@ final class CryptoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell(crypto: CryptoModel, index: IndexPath) {
-        label.text = crypto.symbols[index.row].symbol
-    }
-    
     private func layout() {
-        addSubview(label)
+        addSubview(cryptoNameLabel)
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        cryptoNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            cryptoNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            cryptoNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
         ])
     }
 }

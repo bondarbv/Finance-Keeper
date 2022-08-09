@@ -18,12 +18,9 @@ extension CryptoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTableViewCell.id) as! CryptoTableViewCell
-        cell.setupCell(crypto: cryptoViewModel.crypto, index: indexPath)
+        cell.cryptoCellViewModel = cryptoViewModel.cryptoCellViewModel(at: indexPath)
         return cell
     }
 }
 
-extension CryptoViewController: UITableViewDelegate {
-    
-}
-
+extension CryptoViewController: UITableViewDelegate {}
