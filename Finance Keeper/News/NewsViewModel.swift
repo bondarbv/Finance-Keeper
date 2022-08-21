@@ -15,6 +15,7 @@ protocol NewsViewModelProtocol {
     var news: Box<NewsModel> { get }
     func numberOfRows() -> Int
     func fetchNews(completion: @escaping () -> Void)
+    func newsCellViewModel(at indexPath: IndexPath) -> NewsCellViewModelProtocol
 }
 
 final class NewsViewModel: NewsViewModelProtocol {
@@ -34,5 +35,9 @@ final class NewsViewModel: NewsViewModelProtocol {
                 print(error)
             }
         }
+    }
+    
+    func newsCellViewModel(at indexPath: IndexPath) -> NewsCellViewModelProtocol {
+        NewsCellViewModel(article: Article(source: Source(id: "", name: ""), author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantPast))
     }
 }
