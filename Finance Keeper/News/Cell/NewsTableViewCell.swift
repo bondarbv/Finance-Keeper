@@ -4,7 +4,7 @@
 
 // Created by Bohdan Bondar on 31.07.2022 at 5:12 PM.
 // Copyright (c) 2022 Bohdan Bondar. All rights reserved.
- 
+
 // GitHub: https://github.com/bondarbv
 // Linkedin: https://www.linkedin.com/in/bondarbv-ios/
 
@@ -13,10 +13,24 @@ import UIKit
 
 final class NewsTableViewCell: UITableViewCell {
     
+    var newsCellViewModel: NewsCellViewModelProtocol! {
+        didSet {
+            newsCellViewModel.article?.bind { [unowned self] value in
+                DispatchQueue.main.async {
+                    self.titleLabel.text = value.title
+                }
+            }
+        }
+    }
+    
     static var id = "NewsTableViewCell"
     
-    private let label = UILabel()
-
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
@@ -27,20 +41,19 @@ final class NewsTableViewCell: UITableViewCell {
     }
     
     func setupCell(news: NewsModel, index: IndexPath) {
-        label.numberOfLines = 0
-        label.text = news.articles[index.row].title
+        titleLabel.text = news.articles[index.row].title
     }
     
     private func layout() {
-        addSubview(label)
+        addSubview(titleLabel)
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
 }

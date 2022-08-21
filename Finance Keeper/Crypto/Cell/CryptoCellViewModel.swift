@@ -16,7 +16,7 @@ protocol CryptoCellViewModelProtocol {
     init(crypto: Crypto)
 }
 
-class CryptoCellViewModel: CryptoCellViewModelProtocol {
+final class CryptoCellViewModel: CryptoCellViewModelProtocol {
     var cryptoName: Box<String> = Box("")
     
     required init(crypto: Crypto) {
