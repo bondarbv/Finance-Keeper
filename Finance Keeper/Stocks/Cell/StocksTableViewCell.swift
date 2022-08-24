@@ -15,7 +15,11 @@ final class StocksTableViewCell: UITableViewCell {
     
     static var id = "StocksTableViewCell"
     
-    private let label = UILabel()
+    private let stockNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
+        return label
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,17 +31,17 @@ final class StocksTableViewCell: UITableViewCell {
     }
     
     func setupCell(stocks: StocksModel) {
-        label.text = stocks.quoteSummary.result[0].price.symbol
+        stockNameLabel.text = stocks.quoteSummary.result[0].price.symbol
     }
     
     private func layout() {
-        addSubview(label)
+        addSubview(stockNameLabel)
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        stockNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            stockNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            stockNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
         ])
     }
 }

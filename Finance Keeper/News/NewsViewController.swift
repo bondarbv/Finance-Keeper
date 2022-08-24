@@ -23,25 +23,25 @@ final class NewsViewController: UIViewController {
         }
     }
     
-    private var newsTableView: UITableView!
+    private lazy var newsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.id)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "News"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        configureTableView()
+        layout()
         newsViewModel = NewsViewModel()
     }
     
-    private func configureTableView() {
-        newsTableView = UITableView()
-        newsTableView.separatorStyle = .none
-        newsTableView.delegate = self
-        newsTableView.dataSource = self
-        newsTableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.id)
-        newsTableView.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func layout() {
         view.addSubview(newsTableView)
         
         NSLayoutConstraint.activate([

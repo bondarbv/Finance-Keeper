@@ -29,7 +29,6 @@ final class StocksViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Stocks"
-        navigationController?.navigationBar.prefersLargeTitles = true
         configureTableView()
         stocksViewModel = StocksViewModel()
     }

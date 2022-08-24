@@ -20,11 +20,12 @@ final class CustomTabBarController: UITabBarController {
     }
     
     private func generateTabBar() {
-        let mainViewController = UINavigationController(rootViewController: MainViewController())
-        let newsViewController = UINavigationController(rootViewController: NewsViewController())
-        let stocksViewController = UINavigationController(rootViewController: StocksViewController())
-        let cryptoViewController = UINavigationController(rootViewController: CryptoViewController())
+        let mainViewController = generateNavigationController(viewController: MainViewController(), title: "Main")
+        let newsViewController = generateNavigationController(viewController: NewsViewController(), title: "News")
+        let stocksViewController = generateNavigationController(viewController: StocksViewController(), title: "Stocks")
+        let cryptoViewController = generateNavigationController(viewController: CryptoViewController(), title: "Crypto")
         
+
         guard let mainImage = UIImage(named: "main") else { return }
         guard let newsImage = UIImage(named: "news") else { return }
         guard let stocksImage = UIImage(named: "stocks") else { return }
@@ -55,6 +56,13 @@ final class CustomTabBarController: UITabBarController {
         return viewController
     }
     
+    private func generateNavigationController(viewController: UIViewController, title: String) -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Bold",size: 40)!]
+        navigationController.navigationBar.prefersLargeTitles = true
+        return navigationController
+    }
+    
     private func setTabBarAppearance() {
         let positionOnX: CGFloat = 10
         let positionOnY: CGFloat = 10
@@ -71,8 +79,13 @@ final class CustomTabBarController: UITabBarController {
         roundLayer.fillColor = UIColor.tabBarBackgroundColor.cgColor
         
         let appearance = UITabBarAppearance()
-        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tabBarUnselectedItemColor]
-        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.tabBarSelectedItemColor]
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.tabBarUnselectedItemColor,
+            NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Medium",size: 16)!]
+        
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.tabBarSelectedItemColor,
+            NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Medium",size: 16)!]
         appearance.stackedLayoutAppearance.normal.iconColor = UIColor.tabBarUnselectedItemColor
         appearance.stackedLayoutAppearance.selected.iconColor = UIColor.tabBarSelectedItemColor
         appearance.backgroundEffect = .none
