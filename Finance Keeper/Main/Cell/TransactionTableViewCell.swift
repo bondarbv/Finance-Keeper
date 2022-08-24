@@ -15,11 +15,28 @@ final class TransactionTableViewCell: UITableViewCell {
     
     static let id = "TransactionTableViewCell"
     
-    private let transactionValueLabel: UILabel = {
+    private let transactionLabel: UILabel = {
        let label = UILabel()
-        label.text = "555$"
+        label.text = "Groceries"
+        label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let transactionValueLabel: UILabel = {
+       let label = UILabel()
+        label.text = "-555$"
+        label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let transactionImageView: UIImageView = {
+        let image = UIImage(named: "groceries")
+        let imageView = UIImageView(image: image?.withTintColor(UIColor.tabBarSelectedItemColor))
+        imageView.tintColor = .green
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,11 +49,21 @@ final class TransactionTableViewCell: UITableViewCell {
     }
     
     private func layout() {
+        addSubview(transactionLabel)
         addSubview(transactionValueLabel)
+        addSubview(transactionImageView)
         
         NSLayoutConstraint.activate([
-            transactionValueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            transactionValueLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
+            transactionImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            transactionImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            transactionImageView.heightAnchor.constraint(equalToConstant: 30),
+            transactionImageView.widthAnchor.constraint(equalToConstant: 30),
+            
+            transactionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            transactionLabel.leadingAnchor.constraint(equalTo: transactionImageView.trailingAnchor, constant: 10),
+            
+            transactionValueLabel.topAnchor.constraint(equalTo: transactionLabel.topAnchor),
+            transactionValueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
 }

@@ -23,25 +23,25 @@ final class CryptoViewController: UIViewController {
         }
     }
     
-    private var cryptoTableView: UITableView!
+    private lazy var cryptoTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: CryptoTableViewCell.id)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Crypto"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        configureTableView()
+        layout()
         cryptoViewModel = CryptoViewModel()
     }
     
-    private func configureTableView() {
-        cryptoTableView = UITableView()
-        cryptoTableView.separatorStyle = .none
-        cryptoTableView.delegate = self
-        cryptoTableView.dataSource = self
-        cryptoTableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: CryptoTableViewCell.id)
-        cryptoTableView.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func layout() {
         view.addSubview(cryptoTableView)
         
         NSLayoutConstraint.activate([

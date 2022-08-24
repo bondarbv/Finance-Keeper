@@ -25,7 +25,11 @@ final class CryptoTableViewCell: UITableViewCell {
     
     static var id = "CryptoTableViewCell"
     
-    private let cryptoNameLabel = UILabel()
+    private let cryptoNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
+        return label
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

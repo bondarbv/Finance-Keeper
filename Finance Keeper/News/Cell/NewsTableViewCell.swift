@@ -28,6 +28,7 @@ final class NewsTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
         return label
     }()
     

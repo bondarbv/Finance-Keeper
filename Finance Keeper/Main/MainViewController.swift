@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
                                                        currentBalanceValueLabel,
                                                        incomeAndExpenseStackView])
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -48,36 +48,45 @@ final class MainViewController: UIViewController {
     private let currentBalanceLabel: UILabel = {
         let label = UILabel()
         label.text = "Current Balance"
+        label.textColor = UIColor.tabBarSelectedItemColor
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 25)
         return label
     }()
     
     private let currentBalanceValueLabel: UILabel = {
         let label = UILabel()
         label.text = "5555$"
+        label.font = UIFont(name: "BrandonGrotesque-Bold", size: 40)
         return label
     }()
     
     private let incomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Income"
+        label.textColor = UIColor.tabBarSelectedItemColor
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
         return label
     }()
     
     private let incomeValueLabel: UILabel = {
         let label = UILabel()
         label.text = "6666$"
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
         return label
     }()
     
     private let expensesLabel: UILabel = {
         let label = UILabel()
         label.text = "Expenses"
+        label.textColor = UIColor.tabBarSelectedItemColor
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
         return label
     }()
     
     private let expensesValueLabel: UILabel = {
         let label = UILabel()
         label.text = "1111$"
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
         return label
     }()
     
@@ -87,6 +96,8 @@ final class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: TransactionTableViewCell.id)
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 50
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -96,7 +107,6 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Main"
-        navigationController?.navigationBar.prefersLargeTitles = true
         layout()
     }
     
