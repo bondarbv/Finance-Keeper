@@ -107,7 +107,23 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Main"
+        setupBarButtonItems()
         layout()
+    }
+    
+    @objc private func addTransaction() {
+        print("add")
+    }
+    
+    private func setupBarButtonItems() {
+        let settingsImage = UIImage(named: "settings")
+        let filterImage = UIImage(named: "filter")
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(addTransaction))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.tabBarSelectedItemColor
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: filterImage, style: .plain, target: self, action: #selector(addTransaction))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.tabBarSelectedItemColor
     }
     
     //MARK: - Layout
@@ -121,7 +137,7 @@ final class MainViewController: UIViewController {
             balanceStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
             transactionsTableVew.topAnchor.constraint(equalTo: balanceStackView.bottomAnchor, constant: 10),
-            transactionsTableVew.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            transactionsTableVew.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             transactionsTableVew.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             transactionsTableVew.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])

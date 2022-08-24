@@ -46,7 +46,7 @@ final class NewsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             newsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            newsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            newsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             newsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             newsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])

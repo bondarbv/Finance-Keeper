@@ -17,6 +17,7 @@ final class CustomTabBarController: UITabBarController {
         super.viewDidLoad()
         generateTabBar()
         setTabBarAppearance()
+        itemsInsets()
     }
     
     private func generateTabBar() {
@@ -25,7 +26,6 @@ final class CustomTabBarController: UITabBarController {
         let stocksViewController = generateNavigationController(viewController: StocksViewController(), title: "Stocks")
         let cryptoViewController = generateNavigationController(viewController: CryptoViewController(), title: "Crypto")
         
-
         guard let mainImage = UIImage(named: "main") else { return }
         guard let newsImage = UIImage(named: "news") else { return }
         guard let stocksImage = UIImage(named: "stocks") else { return }
@@ -63,20 +63,32 @@ final class CustomTabBarController: UITabBarController {
         return navigationController
     }
     
+    private func itemsInsets() {
+        if let itemsCount = tabBar.items?.count {
+            for index in 0...itemsCount - 1 {
+                tabBar.items?[index].imageInsets = UIEdgeInsets(top: 3, left: 0, bottom: -3, right: 0)
+            }
+        }
+    }
+    
     private func setTabBarAppearance() {
         let positionOnX: CGFloat = 10
-        let positionOnY: CGFloat = 10
+        let positionOnY: CGFloat = 8
         let width = tabBar.bounds.width - positionOnX * 2
         let height = tabBar.bounds.height + positionOnY * 2
-        let roundLayer = CAShapeLayer()
         let bezierPath = UIBezierPath(roundedRect: CGRect(x: positionOnX,
                                                           y: tabBar.bounds.minY - positionOnY,
                                                           width: width,
                                                           height: height),
                                       cornerRadius: height / 2)
         
-        roundLayer.path = bezierPath.cgPath
-        roundLayer.fillColor = UIColor.tabBarBackgroundColor.cgColor
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = bezierPath.cgPath
+        shapeLayer.fillColor = UIColor.white.cgColor
+        shapeLayer.shadowColor = UIColor.black.cgColor
+        shapeLayer.shadowRadius = 5
+        shapeLayer.shadowOpacity = 0.5
+        shapeLayer.shadowOffset = CGSize(width: 0, height: 2.5)
         
         let appearance = UITabBarAppearance()
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
@@ -86,12 +98,13 @@ final class CustomTabBarController: UITabBarController {
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.tabBarSelectedItemColor,
             NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Medium",size: 16)!]
+        
         appearance.stackedLayoutAppearance.normal.iconColor = UIColor.tabBarUnselectedItemColor
         appearance.stackedLayoutAppearance.selected.iconColor = UIColor.tabBarSelectedItemColor
         appearance.backgroundEffect = .none
         appearance.shadowColor = .clear
         
-        tabBar.layer.insertSublayer(roundLayer, at: 0)
+        tabBar.layer.insertSublayer(shapeLayer, at: 0)
         tabBar.itemWidth = width / 4
         tabBar.itemPositioning = .centered
         tabBar.standardAppearance = appearance
