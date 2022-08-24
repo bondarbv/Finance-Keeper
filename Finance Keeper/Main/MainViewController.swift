@@ -13,6 +13,7 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
+    //MARK: - Balance UI
     private lazy var balanceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [currentBalanceLabel,
                                                        currentBalanceValueLabel,
@@ -80,6 +81,17 @@ final class MainViewController: UIViewController {
         return label
     }()
     
+    //MARK: - TransactionsTableView
+    private lazy var transactionsTableVew: UITableView = {
+       let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(TransactionTableViewCell.self, forCellReuseIdentifier: TransactionTableViewCell.id)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    //MARK: - ViewLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -88,13 +100,20 @@ final class MainViewController: UIViewController {
         layout()
     }
     
+    //MARK: - Layout
     private func layout() {
         view.addSubview(balanceStackView)
+        view.addSubview(transactionsTableVew)
         
         NSLayoutConstraint.activate([
             balanceStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             balanceStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            balanceStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            balanceStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            transactionsTableVew.topAnchor.constraint(equalTo: balanceStackView.bottomAnchor, constant: 10),
+            transactionsTableVew.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            transactionsTableVew.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            transactionsTableVew.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
