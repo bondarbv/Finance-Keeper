@@ -17,7 +17,6 @@ final class CustomTabBarController: UITabBarController {
         super.viewDidLoad()
         generateTabBar()
         setTabBarAppearance()
-        itemsInsets()
     }
     
     private func generateTabBar() {
@@ -59,21 +58,14 @@ final class CustomTabBarController: UITabBarController {
     private func generateNavigationController(viewController: UIViewController, title: String) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Bold",size: 40)!]
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Medium",size: 25)!]
         navigationController.navigationBar.prefersLargeTitles = true
         return navigationController
     }
     
-    private func itemsInsets() {
-        if let itemsCount = tabBar.items?.count {
-            for index in 0...itemsCount - 1 {
-                tabBar.items?[index].imageInsets = UIEdgeInsets(top: 3, left: 0, bottom: -3, right: 0)
-            }
-        }
-    }
-    
     private func setTabBarAppearance() {
         let positionOnX: CGFloat = 10
-        let positionOnY: CGFloat = 8
+        let positionOnY: CGFloat = 10
         let width = tabBar.bounds.width - positionOnX * 2
         let height = tabBar.bounds.height + positionOnY * 2
         let bezierPath = UIBezierPath(roundedRect: CGRect(x: positionOnX,
