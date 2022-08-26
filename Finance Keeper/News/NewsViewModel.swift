@@ -38,6 +38,6 @@ final class NewsViewModel: NewsViewModelProtocol {
     }
     
     func newsCellViewModel(at indexPath: IndexPath) -> NewsCellViewModelProtocol {
-        NewsCellViewModel(article: Article(source: Source(id: "", name: ""), author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantPast))
+        NewsCellViewModel(article: Article(author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantPast))
     }
 }
