@@ -18,13 +18,7 @@ struct NewsModel: Codable {
 }
 
 struct Article: Codable {
-    let source: Source
     let author, articleDescription, urlToImage, content: String?
     let title, url: String
     let publishedAt: Date
-}
-
-struct Source: Codable {
-    let id: String?
-    let name: String
 }
