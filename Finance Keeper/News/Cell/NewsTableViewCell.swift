@@ -16,14 +16,36 @@ final class NewsTableViewCell: UITableViewCell {
     var newsCellViewModel: NewsCellViewModelProtocol! {
         didSet {
             newsCellViewModel.article?.bind { [unowned self] value in
-                let date = value.publishedAt
+                let day = value.publishedAt
                 let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM dd, yyyy"
+                let date = dateFormatter.string(from: day)
+                
+                let publishedAt = value.publishedAt
                 dateFormatter.dateFormat = "HH:mm"
+                let time = dateFormatter.string(from: publishedAt)
                 
                 DispatchQueue.main.async {
                     self.titleLabel.text = value.title
-                    self.authorLabel.text = value.author
-                    self.dateLabel.text = dateFormatter.string(from: date)
+                    self.dateLabel.text =
+                    """
+                    \(time)
+                    \(date)
+                    """
+
+                    if let author = self.authorLabel.text {
+                        self.authorLabel.text =
+                        """
+                        Source:
+                        \(author)
+                        """
+                    } else {
+                        self.authorLabel.text =
+                        """
+                        Source:
+                        No news source
+                        """
+                    }
                 }
             }
         }
@@ -32,7 +54,7 @@ final class NewsTableViewCell: UITableViewCell {
     static var id = "NewsTableViewCell"
     
     private let separatorView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = UIColor.tabBarSelectedItemColor
         view.layer.cornerRadius = 2
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +71,7 @@ final class NewsTableViewCell: UITableViewCell {
     
     private let authorLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +80,7 @@ final class NewsTableViewCell: UITableViewCell {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
         label.textAlignment = .right
         label.textColor = .gray
@@ -74,17 +98,34 @@ final class NewsTableViewCell: UITableViewCell {
     }
     
     func setupCell(news: NewsModel, index: IndexPath) {
-        let date = news.articles[index.row].publishedAt
+        let day = news.articles[index.row].publishedAt
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        let date = dateFormatter.string(from: day)
+        
+        let publishedAt = news.articles[index.row].publishedAt
         dateFormatter.dateFormat = "HH:mm"
+        let time = dateFormatter.string(from: publishedAt)
         
         titleLabel.text = news.articles[index.row].title
-        dateLabel.text = dateFormatter.string(from: date)
+        dateLabel.text =
+        """
+        \(time)
+        \(date)
+        """
         
-        if news.articles[index.row].author != nil {
-            authorLabel.text = news.articles[index.row].author
+        if let author = news.articles[index.row].author {
+            authorLabel.text =
+            """
+            Source:
+            \(author)
+            """
         } else {
-            authorLabel.text = "No news source"
+            authorLabel.text =
+            """
+            Source:
+            No news source
+            """
         }
     }
     
@@ -105,7 +146,7 @@ final class NewsTableViewCell: UITableViewCell {
             
             dateLabel.topAnchor.constraint(equalTo: authorLabel.topAnchor),
             dateLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            dateLabel.widthAnchor.constraint(equalToConstant: 60),
+            dateLabel.widthAnchor.constraint(equalToConstant: 130),
             
             separatorView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 10),
             separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),

@@ -15,9 +15,11 @@ final class CryptoTableViewCell: UITableViewCell {
     
     var cryptoCellViewModel: CryptoCellViewModelProtocol! {
         didSet {
-            cryptoCellViewModel.cryptoName.bind { [unowned self] value in
-                DispatchQueue.main.async {
-                    self.cryptoNameLabel.text = value
+            cryptoCellViewModel.fetchCryptoData { [weak self] in
+                self?.cryptoCellViewModel.crypto.bind { crypto in
+                    DispatchQueue.main.async {
+                        self?.cryptoNameLabel.text = "\(crypto.symbol) \(crypto.priceChangePercent) \(crypto.lastPrice)"
+                    }
                 }
             }
         }
