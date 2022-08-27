@@ -15,6 +15,8 @@ final class StocksTableViewCell: UITableViewCell {
     
     static var id = "StocksTableViewCell"
     
+    var stopActivityIndicator: () -> Void = { }
+    
     private let stockNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
@@ -32,6 +34,7 @@ final class StocksTableViewCell: UITableViewCell {
     
     func setupCell(stocks: StocksModel) {
         stockNameLabel.text = stocks.quoteSummary.result[0].price.symbol
+        stopActivityIndicator()
     }
     
     private func layout() {

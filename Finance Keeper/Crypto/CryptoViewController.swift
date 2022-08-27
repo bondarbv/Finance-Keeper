@@ -23,7 +23,14 @@ final class CryptoViewController: UIViewController {
         }
     }
     
-    private lazy var cryptoTableView: UITableView = {
+    let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
+    lazy var cryptoTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -43,8 +50,12 @@ final class CryptoViewController: UIViewController {
     
     private func layout() {
         view.addSubview(cryptoTableView)
+        view.addSubview(activityIndicator)
         
         NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             cryptoTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             cryptoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             cryptoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

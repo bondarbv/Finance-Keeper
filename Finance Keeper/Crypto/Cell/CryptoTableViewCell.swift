@@ -13,6 +13,8 @@ import UIKit
 
 final class CryptoTableViewCell: UITableViewCell {
     
+    var stopActivityIndicator: () -> Void = { }
+    
     var cryptoCellViewModel: CryptoCellViewModelProtocol! {
         didSet {
             cryptoCellViewModel.fetchCryptoData { [weak self] in
@@ -20,6 +22,7 @@ final class CryptoTableViewCell: UITableViewCell {
                     DispatchQueue.main.async {
                         self?.cryptoNameLabel.text = "\(crypto.symbol) \(crypto.priceChangePercent) \(crypto.lastPrice)"
                         self?.cryptoNameLabel.backgroundColor = self?.cryptoCellViewModel.priceChangePercentColor
+                        self?.stopActivityIndicator()
                     }
                 }
             }
@@ -31,6 +34,7 @@ final class CryptoTableViewCell: UITableViewCell {
     private let cryptoNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -45,8 +49,6 @@ final class CryptoTableViewCell: UITableViewCell {
     
     private func layout() {
         addSubview(cryptoNameLabel)
-        
-        cryptoNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             cryptoNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),

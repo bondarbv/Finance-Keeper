@@ -23,7 +23,14 @@ final class NewsViewController: UIViewController {
         }
     }
     
-    private lazy var newsTableView: UITableView = {
+    let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
+    lazy var newsTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.delegate = self
@@ -43,8 +50,12 @@ final class NewsViewController: UIViewController {
     
     private func layout() {
         view.addSubview(newsTableView)
+        view.addSubview(activityIndicator)
         
         NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             newsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             newsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             newsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
