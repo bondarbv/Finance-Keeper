@@ -22,7 +22,7 @@ extension MainViewController:UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.id) as? TransactionTableViewCell else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.id) as! TransactionTableViewCell
         return cell
     }
 }

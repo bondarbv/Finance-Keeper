@@ -12,15 +12,13 @@
 import Foundation
 
 protocol CryptoViewModelProtocol {
-    var crypto: CryptoModel { get }
     func numberOfRows() -> Int
     func fetchCrypto(completion: @escaping () -> Void)
     func cryptoCellViewModel(at indexPath: IndexPath) -> CryptoCellViewModelProtocol
 }
 
 final class CryptoViewModel: CryptoViewModelProtocol {
-    
-    var crypto: CryptoModel = CryptoModel(symbols: [])
+    private var crypto: CryptoModel = CryptoModel(symbols: [])
     
     func numberOfRows() -> Int {
         crypto.symbols.count
