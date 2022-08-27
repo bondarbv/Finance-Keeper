@@ -23,6 +23,4 @@ extension StocksViewController: UITableViewDataSource {
     }
 }
 
-extension StocksViewController: UITableViewDelegate {
-    
-}
+extension StocksViewController: UITableViewDelegate {}

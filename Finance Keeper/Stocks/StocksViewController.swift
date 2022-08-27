@@ -22,28 +22,40 @@ final class StocksViewController: UIViewController {
             }
         }
     }
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
 
-    private var stocksTableView = UITableView()
+    private lazy var stocksTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(StocksTableViewCell.self, forCellReuseIdentifier: StocksTableViewCell.id)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Stocks"
-        configureTableView()
+        layout()
         stocksViewModel = StocksViewModel()
     }
     
-    private func configureTableView() {
-        stocksTableView = UITableView()
-        stocksTableView.separatorStyle = .none
-        stocksTableView.delegate = self
-        stocksTableView.dataSource = self
-        stocksTableView.register(StocksTableViewCell.self, forCellReuseIdentifier: StocksTableViewCell.id)
-        stocksTableView.translatesAutoresizingMaskIntoConstraints = false
-        
+    private func layout() {
         view.addSubview(stocksTableView)
+        view.addSubview(activityIndicator)
         
         NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             stocksTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stocksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             stocksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

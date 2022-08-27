@@ -18,12 +18,15 @@ extension NewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.id) as! NewsTableViewCell
-        cell.setupCell(news: newsViewModel.news.value, index: indexPath)
+        cell.newsCellViewModel = newsViewModel.newsCellViewModel(at: indexPath)
+        cell.stopActivityIndicator = { [unowned self] in
+            self.activityIndicator.stopAnimating()
+            self.newsTableView.beginUpdates()
+            self.newsTableView.endUpdates()
+        }
         return cell
     }
 }
 
-extension NewsViewController: UITableViewDelegate {
-    
-}
+extension NewsViewController: UITableViewDelegate {}
 

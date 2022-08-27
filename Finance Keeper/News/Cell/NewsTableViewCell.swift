@@ -13,9 +13,11 @@ import UIKit
 
 final class NewsTableViewCell: UITableViewCell {
     
+    var stopActivityIndicator: () -> Void = { }
+    
     var newsCellViewModel: NewsCellViewModelProtocol! {
         didSet {
-            newsCellViewModel.article?.bind { [unowned self] value in
+            newsCellViewModel.article.bind { [unowned self] value in
                 let day = value.publishedAt
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MMM dd, yyyy"
@@ -32,8 +34,7 @@ final class NewsTableViewCell: UITableViewCell {
                     \(time)
                     \(date)
                     """
-
-                    if let author = self.authorLabel.text {
+                    if let author = value.author {
                         self.authorLabel.text =
                         """
                         Source:
@@ -46,6 +47,7 @@ final class NewsTableViewCell: UITableViewCell {
                         No news source
                         """
                     }
+                    self.stopActivityIndicator()
                 }
             }
         }
@@ -95,38 +97,6 @@ final class NewsTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupCell(news: NewsModel, index: IndexPath) {
-        let day = news.articles[index.row].publishedAt
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
-        let date = dateFormatter.string(from: day)
-        
-        let publishedAt = news.articles[index.row].publishedAt
-        dateFormatter.dateFormat = "HH:mm"
-        let time = dateFormatter.string(from: publishedAt)
-        
-        titleLabel.text = news.articles[index.row].title
-        dateLabel.text =
-        """
-        \(time)
-        \(date)
-        """
-        
-        if let author = news.articles[index.row].author {
-            authorLabel.text =
-            """
-            Source:
-            \(author)
-            """
-        } else {
-            authorLabel.text =
-            """
-            Source:
-            No news source
-            """
-        }
     }
     
     private func layout() {

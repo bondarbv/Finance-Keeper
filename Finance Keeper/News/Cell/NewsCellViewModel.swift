@@ -12,14 +12,14 @@
 import Foundation
 
 protocol NewsCellViewModelProtocol {
-    var article: Box<Article>? { get }
+    var article: Box<Article> { get }
     init(article: Article)
 }
 
 final class  NewsCellViewModel: NewsCellViewModelProtocol {
-    var article: Box<Article>?
+    var article: Box<Article> = Box(Article(author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantFuture))
     
     required init(article: Article) {
-        self.article?.value = article
+        self.article.value = article
     }
 }
