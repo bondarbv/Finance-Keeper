@@ -19,6 +19,7 @@ final class CryptoTableViewCell: UITableViewCell {
                 self?.cryptoCellViewModel.crypto.bind { crypto in
                     DispatchQueue.main.async {
                         self?.cryptoNameLabel.text = "\(crypto.symbol) \(crypto.priceChangePercent) \(crypto.lastPrice)"
+                        self?.cryptoNameLabel.backgroundColor = self?.cryptoCellViewModel.priceChangePercentColor
                     }
                 }
             }

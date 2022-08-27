@@ -12,6 +12,5 @@
 import Foundation
 
 struct CryptoDataModel: Codable {
-    var symbol: String
-    let lastPrice, priceChangePercent: String
+    var symbol, lastPrice, priceChangePercent: String
 }
