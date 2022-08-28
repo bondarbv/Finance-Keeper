@@ -17,7 +17,7 @@ protocol DetailsViewModelProtocol {
 }
 
 final class DetailsViewModel: DetailsViewModelProtocol {
-    var article: Article = Article(author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantFuture)
+    var article: Article = Article(source: Source(name: ""), author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantFuture)
     
     init(article: Article) {
         self.article = article

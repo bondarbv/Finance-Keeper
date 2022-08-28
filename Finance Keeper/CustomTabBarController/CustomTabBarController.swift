@@ -20,10 +20,10 @@ final class CustomTabBarController: UITabBarController {
     }
     
     private func generateTabBar() {
-        let mainViewController = generateNavigationController(viewController: MainViewController(), title: "Main")
-        let newsViewController = generateNavigationController(viewController: NewsViewController(), title: "News")
-        let stocksViewController = generateNavigationController(viewController: StocksViewController(), title: "Stocks")
-        let cryptoViewController = generateNavigationController(viewController: CryptoViewController(), title: "Crypto")
+        let mainViewController = generateNavigationController(viewController: MainViewController())
+        let newsViewController = generateNavigationController(viewController: NewsViewController())
+        let stocksViewController = generateNavigationController(viewController: StocksViewController())
+        let cryptoViewController = generateNavigationController(viewController: CryptoViewController())
         
         guard let mainImage = UIImage(named: "main") else { return }
         guard let newsImage = UIImage(named: "news") else { return }
@@ -55,7 +55,7 @@ final class CustomTabBarController: UITabBarController {
         return viewController
     }
     
-    private func generateNavigationController(viewController: UIViewController, title: String) -> UINavigationController {
+    private func generateNavigationController(viewController: UIViewController) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Bold",size: 40)!]
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font:UIFont(name: "BrandonGrotesque-Medium",size: 25)!]
