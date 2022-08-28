@@ -12,10 +12,6 @@
 import UIKit.UIColor
 
 extension UIColor {
-    static var tabBarBackgroundColor: UIColor {
-        UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
-    }
-    
     static var tabBarUnselectedItemColor: UIColor {
         UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 0.4)
     }
