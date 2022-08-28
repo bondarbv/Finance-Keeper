@@ -29,24 +29,17 @@ final class NewsTableViewCell: UITableViewCell {
                 
                 DispatchQueue.main.async {
                     self.titleLabel.text = value.title
+                    self.descriptionLabel.text = value.articleDescription?.description
                     self.dateLabel.text =
                     """
                     \(time)
                     \(date)
                     """
-                    if let author = value.author {
-                        self.authorLabel.text =
-                        """
-                        Source:
-                        \(author)
-                        """
-                    } else {
-                        self.authorLabel.text =
-                        """
-                        Source:
-                        No news source
-                        """
-                    }
+                    self.sourceLabel.text =
+                    """
+                    Source:
+                    \(value.source.name)
+                    """
                     self.stopActivityIndicator()
                 }
             }
@@ -71,7 +64,15 @@ final class NewsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let authorLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
+      let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let sourceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
@@ -101,7 +102,8 @@ final class NewsTableViewCell: UITableViewCell {
     
     private func layout() {
         addSubview(titleLabel)
-        addSubview(authorLabel)
+        addSubview(descriptionLabel)
+        addSubview(sourceLabel)
         addSubview(dateLabel)
         addSubview(separatorView)
         
@@ -110,15 +112,19 @@ final class NewsTableViewCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             
-            authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            authorLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            authorLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             
-            dateLabel.topAnchor.constraint(equalTo: authorLabel.topAnchor),
+            sourceLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            sourceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            sourceLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
+            
+            dateLabel.topAnchor.constraint(equalTo: sourceLabel.topAnchor),
             dateLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             dateLabel.widthAnchor.constraint(equalToConstant: 130),
             
-            separatorView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 10),
+            separatorView.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 10),
             separatorView.bottomAnchor.constraint(equalTo: bottomAnchor),
             separatorView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
