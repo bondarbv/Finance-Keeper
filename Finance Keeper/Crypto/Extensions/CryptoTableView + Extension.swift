@@ -20,9 +20,11 @@ extension CryptoViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTableViewCell.id) as! CryptoTableViewCell
         cell.cryptoCellViewModel = cryptoViewModel.cryptoCellViewModel(at: indexPath)
         cell.stopActivityIndicator = { [unowned self] in
-            self.activityIndicator.stopAnimating()
-            self.cryptoTableView.beginUpdates()
-            self.cryptoTableView.endUpdates()
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.cryptoTableView.beginUpdates()
+                self.cryptoTableView.endUpdates()
+            }
         }
         return cell
     }

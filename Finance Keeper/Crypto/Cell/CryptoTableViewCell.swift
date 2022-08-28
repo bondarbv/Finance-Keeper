@@ -20,8 +20,10 @@ final class CryptoTableViewCell: UITableViewCell {
             cryptoCellViewModel.fetchCryptoData { [weak self] in
                 self?.cryptoCellViewModel.crypto.bind { crypto in
                     DispatchQueue.main.async {
-                        self?.cryptoNameLabel.text = "\(crypto.symbol) \(crypto.priceChangePercent) \(crypto.lastPrice)"
-                        self?.cryptoNameLabel.backgroundColor = self?.cryptoCellViewModel.priceChangePercentColor
+                        self?.cryptoNameLabel.text = crypto.symbol
+                        self?.cryptoPriceLabel.text = crypto.lastPrice
+                        self?.cryptoPriceChangeLabel.text = crypto.priceChangePercent
+                        self?.cryptoPriceChangeLabel.layer.backgroundColor = self?.cryptoCellViewModel.priceChangePercentColor?.cgColor
                         self?.stopActivityIndicator()
                     }
                 }
@@ -31,10 +33,33 @@ final class CryptoTableViewCell: UITableViewCell {
     
     static var id = "CryptoTableViewCell"
     
+    private lazy var cryptoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [cryptoNameLabel, cryptoPriceLabel, cryptoPriceChangeLabel])
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.setCustomSpacing(20, after: cryptoPriceLabel)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private let cryptoNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let cryptoPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
+        return label
+    }()
+    
+    private let cryptoPriceChangeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 20)
+        label.layer.cornerRadius = 5
         return label
     }()
     
@@ -48,11 +73,15 @@ final class CryptoTableViewCell: UITableViewCell {
     }
     
     private func layout() {
-        addSubview(cryptoNameLabel)
+        addSubview(cryptoStackView)
         
         NSLayoutConstraint.activate([
-            cryptoNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            cryptoNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            cryptoStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            cryptoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            cryptoStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            
+            cryptoPriceChangeLabel.heightAnchor.constraint(equalToConstant: 40),
+            cryptoPriceChangeLabel.widthAnchor.constraint(equalToConstant: 75)
         ])
     }
 }
