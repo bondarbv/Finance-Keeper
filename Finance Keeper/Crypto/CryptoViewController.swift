@@ -36,6 +36,7 @@ final class CryptoViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: CryptoTableViewCell.id)
+        tableView.rowHeight = 60
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()

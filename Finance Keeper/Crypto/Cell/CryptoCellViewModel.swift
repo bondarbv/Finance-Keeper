@@ -43,12 +43,12 @@ final class CryptoCellViewModel: CryptoCellViewModelProtocol {
                         self.priceChangePercentColor = UIColor.tabBarSelectedItemColor
                     }
                 }
-                
                 for _ in self.crypto.value.lastPrice {
                     if self.crypto.value.lastPrice.last == "0" || self.crypto.value.lastPrice.last == "." {
                         self.crypto.value.lastPrice.removeLast()
                     }
                 }
+                self.crypto.value.lastPrice.insert("$", at: self.crypto.value.lastPrice.endIndex)
                 completion()
             case .failure(let error):
                 print(error)

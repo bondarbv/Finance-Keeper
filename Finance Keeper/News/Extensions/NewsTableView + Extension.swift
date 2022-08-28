@@ -20,9 +20,11 @@ extension NewsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.id) as! NewsTableViewCell
         cell.newsCellViewModel = newsViewModel.newsCellViewModel(at: indexPath)
         cell.stopActivityIndicator = { [unowned self] in
-            self.activityIndicator.stopAnimating()
-            self.newsTableView.beginUpdates()
-            self.newsTableView.endUpdates()
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.newsTableView.beginUpdates()
+                self.newsTableView.endUpdates()
+            }
         }
         return cell
     }
