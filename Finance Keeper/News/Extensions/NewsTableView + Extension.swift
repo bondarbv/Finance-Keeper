@@ -36,6 +36,7 @@ extension NewsViewController: UITableViewDelegate {
         let detailsViewController = DetailsViewController()
         detailsViewController.detailsViewModel = cell.newsCellViewModel.detailsViewModelProtocol()
         navigationController?.pushViewController(detailsViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

@@ -17,8 +17,10 @@ final class DetailsViewController: UIViewController {
         didSet {
             articleImageView.load(detailsViewModel.article.urlToImage)
             DispatchQueue.main.async { [unowned self] in
+                self.articleActivityIndicatorView.stopAnimating()
                 self.titleLabel.text = self.detailsViewModel.article.title
                 self.contentLabel.text = self.detailsViewModel.article.content
+                self.authorLabel.text = self.detailsViewModel.article.author
                 if detailsViewModel.article.urlToImage == nil {
                     self.articleImageView.isHidden = true
                 }
@@ -26,8 +28,16 @@ final class DetailsViewController: UIViewController {
         }
     }
     
+    private let articleActivityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     private lazy var articleStackView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [titleLabel, articleImageView, contentLabel])
+       let stackView = UIStackView(arrangedSubviews: [titleLabel, articleImageView, contentLabel, authorLabel])
         stackView.axis = .vertical
         stackView.alignment = .firstBaseline
         stackView.spacing = 20
@@ -56,6 +66,14 @@ final class DetailsViewController: UIViewController {
         return label
     }()
     
+    private let authorLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .gray
+        label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -66,13 +84,17 @@ final class DetailsViewController: UIViewController {
     
     private func layout() {
         view.addSubview(articleStackView)
+        view.addSubview(articleActivityIndicatorView)
         
         NSLayoutConstraint.activate([
             articleStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             articleStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             articleStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            articleImageView.heightAnchor.constraint(equalToConstant: 250)
+            articleImageView.heightAnchor.constraint(equalToConstant: 250),
+            
+            articleActivityIndicatorView.centerXAnchor.constraint(equalTo: articleImageView.centerXAnchor),
+            articleActivityIndicatorView.centerYAnchor.constraint(equalTo: articleImageView.centerYAnchor)
         ])
     }
 }
