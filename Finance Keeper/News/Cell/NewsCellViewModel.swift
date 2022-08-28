@@ -18,7 +18,7 @@ protocol NewsCellViewModelProtocol {
 }
 
 final class  NewsCellViewModel: NewsCellViewModelProtocol {
-    var article: Box<Article> = Box(Article(author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantFuture))
+    var article: Box<Article> = Box(Article(source: Source(name: ""), author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantFuture))
     
     func detailsViewModelProtocol() -> DetailsViewModelProtocol {
         DetailsViewModel(article: self.article.value)
