@@ -13,12 +13,15 @@ import UIKit
 
 extension CryptoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cryptoViewModel.numberOfRows()
+        if isFiltering {
+            return cryptoViewModel.filteredCrypto.symbols.count
+        }
+        return cryptoViewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CryptoTableViewCell.id) as! CryptoTableViewCell
-        cell.cryptoCellViewModel = cryptoViewModel.cryptoCellViewModel(at: indexPath)
+        cell.cryptoCellViewModel = cryptoViewModel.cryptoCellViewModel(at: indexPath, isFilteing: isFiltering)
         cell.stopActivityIndicator = { [unowned self] in
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
@@ -31,3 +34,11 @@ extension CryptoViewController: UITableViewDataSource {
 }
 
 extension CryptoViewController: UITableViewDelegate {}
+
+extension CryptoViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        cryptoViewModel.filterContentForSearchText(text)
+        cryptoTableView.reloadData()
+    }
+}
