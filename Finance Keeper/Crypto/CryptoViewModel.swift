@@ -10,15 +10,21 @@
 
 
 import Foundation
+import UIKit
 
 protocol CryptoViewModelProtocol {
+    var crypto: CryptoModel { get }
+    var filteredCrypto: CryptoModel { get set }
     func numberOfRows() -> Int
     func fetchCrypto(completion: @escaping () -> Void)
-    func cryptoCellViewModel(at indexPath: IndexPath) -> CryptoCellViewModelProtocol
+    func filterContentForSearchText(_ searchText: String)
+    func cryptoCellViewModel(at indexPath: IndexPath, isFilteing: Bool) -> CryptoCellViewModelProtocol
 }
 
 final class CryptoViewModel: CryptoViewModelProtocol {
-    private var crypto: CryptoModel = CryptoModel(symbols: [])
+    var crypto: CryptoModel = CryptoModel(symbols: [])
+    
+    var filteredCrypto: CryptoModel = CryptoModel(symbols: [])
     
     func numberOfRows() -> Int {
         crypto.symbols.count
@@ -37,7 +43,17 @@ final class CryptoViewModel: CryptoViewModelProtocol {
         }
     }
     
-    func cryptoCellViewModel(at indexPath: IndexPath) -> CryptoCellViewModelProtocol {
-        CryptoCellViewModel(crypto: crypto.symbols[indexPath.row])
+    func filterContentForSearchText(_ searchText: String) {
+        filteredCrypto.symbols = crypto.symbols.filter({ crypto in
+            return crypto.symbol.description.lowercased().contains(searchText.lowercased())
+        })
+    }
+    
+    func cryptoCellViewModel(at indexPath: IndexPath, isFilteing: Bool) -> CryptoCellViewModelProtocol {
+        if isFilteing == true {
+            return CryptoCellViewModel(crypto: filteredCrypto.symbols[indexPath.row])
+        } else {
+            return CryptoCellViewModel(crypto: crypto.symbols[indexPath.row])
+        }
     }
 }

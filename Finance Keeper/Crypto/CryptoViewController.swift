@@ -23,6 +23,15 @@ final class CryptoViewController: UIViewController {
         }
     }
     
+    private var cryptoSearchBarIsEmpty: Bool {
+        guard let text = cryptoSearchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    
+    var isFiltering: Bool {
+        return cryptoSearchController.isActive && !cryptoSearchBarIsEmpty
+    }
+    
     let activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.startAnimating()
@@ -41,10 +50,20 @@ final class CryptoViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var cryptoSearchController: UISearchController = {
+       let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.definesPresentationContext = true
+        searchController.searchBar.placeholder = "Search for cryptocurrency"
+        return searchController
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Crypto"
+        navigationItem.searchController = cryptoSearchController
         layout()
         cryptoViewModel = CryptoViewModel()
     }
