@@ -13,11 +13,16 @@ import Foundation
 
 protocol NewsCellViewModelProtocol {
     var article: Box<Article> { get }
+    func detailsViewModelProtocol() -> DetailsViewModelProtocol
     init(article: Article)
 }
 
 final class  NewsCellViewModel: NewsCellViewModelProtocol {
     var article: Box<Article> = Box(Article(author: "", articleDescription: "", urlToImage: "", content: "", title: "", url: "", publishedAt: .distantFuture))
+    
+    func detailsViewModelProtocol() -> DetailsViewModelProtocol {
+        DetailsViewModel(article: self.article.value)
+    }
     
     required init(article: Article) {
         self.article.value = article

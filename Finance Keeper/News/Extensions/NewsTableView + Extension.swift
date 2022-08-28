@@ -30,5 +30,12 @@ extension NewsViewController: UITableViewDataSource {
     }
 }
 
-extension NewsViewController: UITableViewDelegate {}
+extension NewsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! NewsTableViewCell
+        let detailsViewController = DetailsViewController()
+        detailsViewController.detailsViewModel = cell.newsCellViewModel.detailsViewModelProtocol()
+        navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+}
 

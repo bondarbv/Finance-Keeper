@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		473042CD28956EAA00817A7A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473042CC28956EAA00817A7A /* NetworkManager.swift */; };
 		473042CF289572E700817A7A /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473042CE289572E700817A7A /* CryptoModel.swift */; };
+		473A471B28BB99D20073AA93 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473A471A28BB99D20073AA93 /* DetailsViewController.swift */; };
+		473A471D28BB9AF40073AA93 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473A471C28BB9AF40073AA93 /* DetailsViewModel.swift */; };
 		474CB69728969EFF00D58038 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474CB69628969EFF00D58038 /* APIManager.swift */; };
 		4761B5DB2895BFCC007FFB91 /* CryptoTableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761B5DA2895BFCC007FFB91 /* CryptoTableView + Extension.swift */; };
 		4761B5DD2895C007007FFB91 /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761B5DC2895C007007FFB91 /* CryptoTableViewCell.swift */; };
@@ -52,6 +54,8 @@
 /* Begin PBXFileReference section */
 		473042CC28956EAA00817A7A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		473042CE289572E700817A7A /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
+		473A471A28BB99D20073AA93 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		473A471C28BB9AF40073AA93 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		474CB69628969EFF00D58038 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4761B5DA2895BFCC007FFB91 /* CryptoTableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CryptoTableView + Extension.swift"; sourceTree = "<group>"; };
 		4761B5DC2895C007007FFB91 /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
@@ -105,6 +109,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		473A471928BB99AC0073AA93 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				473A471A28BB99D20073AA93 /* DetailsViewController.swift */,
+				473A471C28BB9AF40073AA93 /* DetailsViewModel.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		4761B5E02895C29E007FFB91 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +242,7 @@
 		478ACEF62895624100EE31B6 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				473A471928BB99AC0073AA93 /* Details */,
 				47D74A8028BA177E003380F1 /* Extensions */,
 				47ECB4D42896C55D00566D24 /* Cell */,
 				478ACEEC2895548A00EE31B6 /* NewsViewController.swift */,
@@ -441,7 +455,9 @@
 				474CB69728969EFF00D58038 /* APIManager.swift in Sources */,
 				47BE1BE428B6604800249767 /* TransactionTableViewCell.swift in Sources */,
 				47ECB4D12896C4AA00566D24 /* NewsTableView + Extension.swift in Sources */,
+				473A471B28BB99D20073AA93 /* DetailsViewController.swift in Sources */,
 				478ACEEF2895549200EE31B6 /* StocksViewController.swift in Sources */,
+				473A471D28BB9AF40073AA93 /* DetailsViewModel.swift in Sources */,
 				478ACED12895502000EE31B6 /* SceneDelegate.swift in Sources */,
 				47D74A7E28BA167D003380F1 /* CryptoDataModel.swift in Sources */,
 				478E4ACF28A26F3800A5E151 /* Helpers.swift in Sources */,
