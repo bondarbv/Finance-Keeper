@@ -21,6 +21,11 @@ final class DetailsViewController: UIViewController {
                 self.titleLabel.text = self.detailsViewModel.article.title
                 self.contentLabel.text = self.detailsViewModel.article.content
                 self.authorLabel.text = self.detailsViewModel.article.author
+                
+                if detailsViewModel.article.content == nil {
+                    self.contentLabel.isHidden = true
+                }
+                
                 if detailsViewModel.article.urlToImage == nil {
                     self.articleImageView.isHidden = true
                 }
@@ -55,7 +60,9 @@ final class DetailsViewController: UIViewController {
     private let articleImageView: UIImageView = {
         let image = UIImage()
         let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
         return imageView
     }()
     
