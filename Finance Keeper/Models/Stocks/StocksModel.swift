@@ -11,7 +11,7 @@
 
 import Foundation
 
-struct StocksTestModel: Codable {
+struct StocksModel: Codable {
     let data: DataClass
 }
 
