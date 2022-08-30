@@ -48,8 +48,8 @@
 		47ECB4D32896C53E00566D24 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D22896C53E00566D24 /* NewsTableViewCell.swift */; };
 		47ECB4D62896DB4800566D24 /* StocksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D52896DB4800566D24 /* StocksModel.swift */; };
 		47ECB4D82896DBAA00566D24 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D72896DBAA00566D24 /* APIKeys.swift */; };
-		47ECB4DA2896F9FB00566D24 /* StocksTableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D92896F9FB00566D24 /* StocksTableView + Extension.swift */; };
-		47ECB4DD2896FA2B00566D24 /* StocksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4DC2896FA2B00566D24 /* StocksTableViewCell.swift */; };
+		47ECB4DA2896F9FB00566D24 /* StocksCollectionView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D92896F9FB00566D24 /* StocksCollectionView + Extension.swift */; };
+		47ECB4DD2896FA2B00566D24 /* StocksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4DC2896FA2B00566D24 /* StocksCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,8 +96,8 @@
 		47ECB4D22896C53E00566D24 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		47ECB4D52896DB4800566D24 /* StocksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksModel.swift; sourceTree = "<group>"; };
 		47ECB4D72896DBAA00566D24 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
-		47ECB4D92896F9FB00566D24 /* StocksTableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StocksTableView + Extension.swift"; sourceTree = "<group>"; };
-		47ECB4DC2896FA2B00566D24 /* StocksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTableViewCell.swift; sourceTree = "<group>"; };
+		47ECB4D92896F9FB00566D24 /* StocksCollectionView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StocksCollectionView + Extension.swift"; sourceTree = "<group>"; };
+		47ECB4DC2896FA2B00566D24 /* StocksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +111,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		470469B328BCBCA3008D2165 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				473042CE289572E700817A7A /* CryptoModel.swift */,
+				47D74A7D28BA167D003380F1 /* CryptoDataModel.swift */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		470469B428BCBCAE008D2165 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				47ECB4CE2896C15400566D24 /* NewsModel.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		470469B528BCBCB6008D2165 /* Stocks */ = {
+			isa = PBXGroup;
+			children = (
+				47ECB4D52896DB4800566D24 /* StocksModel.swift */,
+			);
+			path = Stocks;
+			sourceTree = "<group>";
+		};
 		473A471928BB99AC0073AA93 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,10 +191,9 @@
 		478ACEE22895504200EE31B6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				473042CE289572E700817A7A /* CryptoModel.swift */,
-				47ECB4CE2896C15400566D24 /* NewsModel.swift */,
-				47ECB4D52896DB4800566D24 /* StocksModel.swift */,
-				47D74A7D28BA167D003380F1 /* CryptoDataModel.swift */,
+				470469B528BCBCB6008D2165 /* Stocks */,
+				470469B428BCBCAE008D2165 /* News */,
+				470469B328BCBCA3008D2165 /* Crypto */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,7 +356,7 @@
 		47D74A8128BA178C003380F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				47ECB4D92896F9FB00566D24 /* StocksTableView + Extension.swift */,
+				47ECB4D92896F9FB00566D24 /* StocksCollectionView + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -349,7 +373,7 @@
 		47ECB4DB2896FA2300566D24 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				47ECB4DC2896FA2B00566D24 /* StocksTableViewCell.swift */,
+				47ECB4DC2896FA2B00566D24 /* StocksCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -436,7 +460,7 @@
 				478ACED32895502000EE31B6 /* MainViewController.swift in Sources */,
 				4761B5DB2895BFCC007FFB91 /* CryptoTableView + Extension.swift in Sources */,
 				4761B5E22895C2B1007FFB91 /* CryptoViewModel.swift in Sources */,
-				47ECB4DD2896FA2B00566D24 /* StocksTableViewCell.swift in Sources */,
+				47ECB4DD2896FA2B00566D24 /* StocksCollectionViewCell.swift in Sources */,
 				478ACEF428955B7000EE31B6 /* UIColor + Extension.swift in Sources */,
 				478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */,
 				47ECB4D82896DBAA00566D24 /* APIKeys.swift in Sources */,
@@ -447,7 +471,7 @@
 				47BE1BF528B6D4C800249767 /* GradientButton.swift in Sources */,
 				47BE1BE228B65FFA00249767 /* MainViewController+TableViewExtension.swift in Sources */,
 				47ECB4D62896DB4800566D24 /* StocksModel.swift in Sources */,
-				47ECB4DA2896F9FB00566D24 /* StocksTableView + Extension.swift in Sources */,
+				47ECB4DA2896F9FB00566D24 /* StocksCollectionView + Extension.swift in Sources */,
 				47ECB4D32896C53E00566D24 /* NewsTableViewCell.swift in Sources */,
 				4729F0D428BBCC7C0054D10B /* UIImageView + Extension.swift in Sources */,
 				47ECB4CF2896C15400566D24 /* NewsModel.swift in Sources */,

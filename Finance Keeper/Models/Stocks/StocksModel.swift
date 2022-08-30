@@ -26,7 +26,7 @@ struct StockResult: Codable {
 struct Price: Codable {
     let exchangeDataDelayedBy: Int
     let exchange, exchangeName, shortName, longName, currency, currencySymbol, symbol, quoteSourceName: String
-    let regularMarketPrice: PostMarketChange
+    let regularMarketPrice, regularMarketChangePercent: PostMarketChange
 }
 
 struct PostMarketChange: Codable {

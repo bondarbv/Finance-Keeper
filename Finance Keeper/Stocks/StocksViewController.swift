@@ -17,7 +17,7 @@ final class StocksViewController: UIViewController {
         didSet {
             stocksViewModel.fetchStocks { [unowned self] in
                 DispatchQueue.main.async {
-                    self.stocksTableView.reloadData()
+                    self.stocksCollectionView.reloadData()
                 }
             }
         }
@@ -31,36 +31,37 @@ final class StocksViewController: UIViewController {
         return activityIndicator
     }()
 
-    private lazy var stocksTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(StocksTableViewCell.self, forCellReuseIdentifier: StocksTableViewCell.id)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
+//    private lazy var stocksTableView: UITableView = {
+//        let tableView = UITableView()
+//        tableView.separatorStyle = .none
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        tableView.register(StocksTableViewCell.self, forCellReuseIdentifier: StocksTableViewCell.id)
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        return tableView
+//    }()
+    
+    private lazy var stocksCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
+        layout.itemSize = CGSize(width: (view.frame.size.width - 40) - 4, height: (view.frame.size.height / 6) - 4)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.register(StocksCollectionViewCell.self, forCellWithReuseIdentifier: StocksCollectionViewCell.id)
+        collectionView.frame = view.bounds
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Stocks"
-        layout()
+        view.addSubview(stocksCollectionView)
         stocksViewModel = StocksViewModel()
-    }
-    
-    private func layout() {
-        view.addSubview(stocksTableView)
-        view.addSubview(activityIndicator)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            stocksTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stocksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            stocksTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stocksTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
     }
 }

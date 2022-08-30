@@ -77,8 +77,8 @@ final class CryptoTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             cryptoStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            cryptoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            cryptoStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            cryptoStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            cryptoStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
             cryptoPriceChangeLabel.heightAnchor.constraint(equalToConstant: 40),
             cryptoPriceChangeLabel.widthAnchor.constraint(equalToConstant: 75)
