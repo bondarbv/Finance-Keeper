@@ -36,7 +36,7 @@ final class StocksViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 20
-        layout.itemSize = CGSize(width: (view.frame.size.width - 40), height: (view.frame.size.height / 4))
+        layout.itemSize = CGSize(width: (view.frame.size.width - 40), height: (view.frame.size.height / 5))
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -51,7 +51,15 @@ final class StocksViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Stocks"
-        view.addSubview(stocksCollectionView)
+        layout()
         stocksViewModel = StocksViewModel()
+    }
+    
+    private func layout() {
+        view.addSubview(stocksCollectionView)
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 }

@@ -34,7 +34,7 @@ final class CryptoCellViewModel: CryptoCellViewModelProtocol {
                 if Double(crypto.lastPrice) != 0.00000000 {
                     self.crypto.value = crypto
                     self.crypto.value.symbol.removeLast(4)
-                    self.crypto.value.priceChangePercent = "\(String(format: "%.02f", Double(crypto.priceChangePercent)!))%"
+                    self.crypto.value.priceChangePercent = String(format: "%.02f", Double(crypto.priceChangePercent)!) + "%"
                     
                     if self.crypto.value.priceChangePercent.prefix(1) == "-" {
                         self.priceChangePercentColor = .red

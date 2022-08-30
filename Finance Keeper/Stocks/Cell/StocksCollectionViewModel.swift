@@ -12,9 +12,14 @@
 import Foundation
 
 protocol StocksCollectionViewModelProtocol {
-    
+    var stock: Headers { get }
+    init(stock: Headers)
 }
 
 class StocksCollectionViewModel: StocksCollectionViewModelProtocol {
+    var stock: Headers = Headers(symbol: "", name: "", lastsale: "", netchange: "", pctchange: "", marketCap: "", url: "")
     
+    required init(stock: Headers) {
+        self.stock = stock
+    }
 }

@@ -12,20 +12,21 @@
 import Foundation
 
 protocol StocksViewModelProtocol {
-    var stocks: Box<StocksTestModel> { get }
+    var stocks: Box<StocksModel> { get }
     func numberOfRows() -> Int
     func fetchStocks(completion: @escaping () -> Void)
+    func stocksCollectionViewModel(at indexPath: IndexPath) -> StocksCollectionViewModelProtocol
 }
 
 final class StocksViewModel: StocksViewModelProtocol {
-    var stocks: Box<StocksTestModel> = Box(StocksTestModel(data: DataClass(table: Table(rows: [Headers(symbol: "", name: "", lastsale: "", netchange: "", pctchange: "", marketCap: "", url: "")]), totalrecords: 0)))
+    var stocks: Box<StocksModel> = Box(StocksModel(data: DataClass(table: Table(rows: [Headers(symbol: "", name: "", lastsale: "", netchange: "", pctchange: "", marketCap: "", url: "")]), totalrecords: 0)))
     
     func numberOfRows() -> Int {
         stocks.value.data.totalrecords
     }
     
     func fetchStocks(completion: @escaping () -> Void) {
-        NetworkManager.fetch(url: APIManager.stocks, model: StocksTestModel.self) { [unowned self] result in
+        NetworkManager.fetch(url: APIManager.stocks, model: StocksModel.self) { [unowned self] result in
             switch result {
             case .success(let stocks):
                 self.stocks.value = stocks
@@ -34,5 +35,9 @@ final class StocksViewModel: StocksViewModelProtocol {
                 print(error)
             }
         }
+    }
+    
+    func stocksCollectionViewModel(at indexPath: IndexPath) -> StocksCollectionViewModelProtocol {
+        StocksCollectionViewModel(stock: stocks.value.data.table.rows[indexPath.row])
     }
 }

@@ -15,6 +15,41 @@ final class StocksCollectionViewCell: UICollectionViewCell {
     
     static var id = "StocksTableViewCell"
     
+    var stockCollectionViewModel: StocksCollectionViewModelProtocol! {
+        didSet {
+            DispatchQueue.main.async { [unowned self] in
+                stockSymbolLabel.text = stockCollectionViewModel.stock.symbol
+                stockSymbolLabel.text = stockCollectionViewModel.stock.symbol
+                stockNameLabel.text = stockCollectionViewModel.stock.name
+                stockPriceLabel.text = stockCollectionViewModel.stock.lastsale
+                var plusOrMinus = ""
+                
+                if stockCollectionViewModel.stock.pctchange.first == "-" {
+                    plusOrMinus = "-"
+                    backgroundGradient.colors = [UIColor.red.cgColor, UIColor.darkGray.cgColor]
+                } else {
+                    plusOrMinus = "+"
+                    backgroundGradient.colors = [UIColor.tabBarSelectedItemColor.cgColor, UIColor.darkGray.cgColor]
+                }
+                
+                var percentChange = stockCollectionViewModel.stock.pctchange
+                percentChange.removeFirst()
+                percentChange.removeLast()
+                
+                var netChange = stockCollectionViewModel.stock.netchange
+                
+                if netChange.first == "-" {
+                    netChange.removeFirst()
+                }
+                
+                percentChangedLabel.text = plusOrMinus + String(format: "%.02f", Double(percentChange)!) + "%"
+                netChangedLabel.text = plusOrMinus + String(format: "%.02f", Double(netChange)!) + "$"
+                marketCapLabel.text = stockCollectionViewModel.stock.marketCap + "$"
+                stopActivityIndicator()
+            }
+        }
+    }
+    
     var stopActivityIndicator: () -> Void = { }
     
     private let stockSymbolLabel: UILabel = {
@@ -29,7 +64,7 @@ final class StocksCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,9 +109,8 @@ final class StocksCollectionViewCell: UICollectionViewCell {
     private lazy var backgroundGradient: CAGradientLayer = {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds
-        gradient.colors = [UIColor.red.cgColor, UIColor.lightGray.cgColor]
-        gradient.startPoint = CGPoint(x: 0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 0, y: 1)
         gradient.cornerRadius = 20
         return gradient
     }()
@@ -89,16 +123,6 @@ final class StocksCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupCell(stocks: StocksTestModel, at indexPath: IndexPath) {
-        stockSymbolLabel.text = stocks.data.table.rows[indexPath.row].symbol
-        stockNameLabel.text = stocks.data.table.rows[indexPath.row].name
-        stockPriceLabel.text = stocks.data.table.rows[indexPath.row].lastsale
-        percentChangedLabel.text = stocks.data.table.rows[indexPath.row].pctchange
-        netChangedLabel.text = stocks.data.table.rows[indexPath.row].netchange + "$"
-        marketCapLabel.text = stocks.data.table.rows[indexPath.row].marketCap + "$"
-        stopActivityIndicator()
     }
     
     private func layout() {
