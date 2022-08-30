@@ -12,8 +12,7 @@
 import Foundation
 
 struct APIManager {
-    static var stockName = "AAPL"
     static let crypto = URL(string: "https://www.binance.com/api/v3/exchangeInfo")
     static var news = URL(string: "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=\(APIKeys.newsAPIKey)")
-    static var stocks = URL(string: "https://query1.finance.yahoo.com/v10/finance/quoteSummary/\(APIManager.stockName)?modules=price")
+    static var stocks = URL(string: "https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=6000&exchange=NASDAQ")
 }

@@ -18,7 +18,7 @@ extension StocksViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StocksCollectionViewCell.id, for: indexPath) as! StocksCollectionViewCell
-        cell.setupCell(stocks: stocksViewModel.stocks.value)
+        cell.setupCell(stocks: stocksViewModel.stocks.value, at: indexPath)
         return cell
     }
 }

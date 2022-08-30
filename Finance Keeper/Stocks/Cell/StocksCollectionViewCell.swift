@@ -28,7 +28,8 @@ final class StocksCollectionViewCell: UICollectionViewCell {
     private let stockNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont(name: "BrandonGrotesque-Regular", size: 30)
+        label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
+        label.numberOfLines = 3
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -36,12 +37,33 @@ final class StocksCollectionViewCell: UICollectionViewCell {
     private let stockPriceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
+        label.textAlignment = .right
         label.font = UIFont(name: "BrandonGrotesque-Medium", size: 30)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let stockPriceChangedLabel: UILabel = {
+    private let percentChangedLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.numberOfLines = 2
+        label.textAlignment = .right
+        label.font = UIFont(name: "BrandonGrotesque-Medium", size: 30)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let netChangedLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.numberOfLines = 2
+        label.textAlignment = .right
+        label.font = UIFont(name: "BrandonGrotesque-Regular", size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let marketCapLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont(name: "BrandonGrotesque-Medium", size: 30)
@@ -69,11 +91,13 @@ final class StocksCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupCell(stocks: StocksModel) {
-        stockSymbolLabel.text = stocks.quoteSummary.result[0].price.symbol
-        stockNameLabel.text = stocks.quoteSummary.result[0].price.longName
-        stockPriceLabel.text = stocks.quoteSummary.result[0].price.regularMarketPrice.fmt + stocks.quoteSummary.result[0].price.currencySymbol
-        stockPriceChangedLabel.text = stocks.quoteSummary.result[0].price.regularMarketChangePercent.fmt
+    func setupCell(stocks: StocksTestModel, at indexPath: IndexPath) {
+        stockSymbolLabel.text = stocks.data.table.rows[indexPath.row].symbol
+        stockNameLabel.text = stocks.data.table.rows[indexPath.row].name
+        stockPriceLabel.text = stocks.data.table.rows[indexPath.row].lastsale
+        percentChangedLabel.text = stocks.data.table.rows[indexPath.row].pctchange
+        netChangedLabel.text = stocks.data.table.rows[indexPath.row].netchange + "$"
+        marketCapLabel.text = stocks.data.table.rows[indexPath.row].marketCap + "$"
         stopActivityIndicator()
     }
     
@@ -81,20 +105,30 @@ final class StocksCollectionViewCell: UICollectionViewCell {
         addSubview(stockSymbolLabel)
         addSubview(stockNameLabel)
         addSubview(stockPriceLabel)
-        addSubview(stockPriceChangedLabel)
+        addSubview(percentChangedLabel)
+        addSubview(netChangedLabel)
+        addSubview(marketCapLabel)
         
         NSLayoutConstraint.activate([
             stockSymbolLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             stockSymbolLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
-            stockNameLabel.topAnchor.constraint(equalTo: stockSymbolLabel.bottomAnchor, constant: 20),
+            stockNameLabel.topAnchor.constraint(equalTo: stockSymbolLabel.bottomAnchor),
             stockNameLabel.leadingAnchor.constraint(equalTo: stockSymbolLabel.leadingAnchor),
+            stockNameLabel.trailingAnchor.constraint(equalTo: stockPriceLabel.leadingAnchor),
             
             stockPriceLabel.topAnchor.constraint(equalTo: stockSymbolLabel.topAnchor),
+            stockPriceLabel.widthAnchor.constraint(equalToConstant: 130),
             stockPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            stockPriceChangedLabel.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 20),
-            stockPriceChangedLabel.trailingAnchor.constraint(equalTo: stockPriceLabel.trailingAnchor)
+            percentChangedLabel.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 20),
+            percentChangedLabel.trailingAnchor.constraint(equalTo: stockPriceLabel.trailingAnchor),
+            
+            netChangedLabel.topAnchor.constraint(equalTo: percentChangedLabel.bottomAnchor),
+            netChangedLabel.trailingAnchor.constraint(equalTo: percentChangedLabel.trailingAnchor),
+            
+            marketCapLabel.leadingAnchor.constraint(equalTo: stockSymbolLabel.leadingAnchor),
+            marketCapLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
 }

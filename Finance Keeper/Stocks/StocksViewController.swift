@@ -30,23 +30,13 @@ final class StocksViewController: UIViewController {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
-
-//    private lazy var stocksTableView: UITableView = {
-//        let tableView = UITableView()
-//        tableView.separatorStyle = .none
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        tableView.register(StocksTableViewCell.self, forCellReuseIdentifier: StocksTableViewCell.id)
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//        return tableView
-//    }()
     
     private lazy var stocksCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
-        layout.itemSize = CGSize(width: (view.frame.size.width - 40) - 4, height: (view.frame.size.height / 6) - 4)
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 20
+        layout.itemSize = CGSize(width: (view.frame.size.width - 40), height: (view.frame.size.height / 4))
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
