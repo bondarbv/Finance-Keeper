@@ -50,6 +50,7 @@
 		47ECB4D82896DBAA00566D24 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D72896DBAA00566D24 /* APIKeys.swift */; };
 		47ECB4DA2896F9FB00566D24 /* StocksCollectionView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4D92896F9FB00566D24 /* StocksCollectionView + Extension.swift */; };
 		47ECB4DD2896FA2B00566D24 /* StocksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECB4DC2896FA2B00566D24 /* StocksCollectionViewCell.swift */; };
+		47EE968C28BE6CB400C3BFFD /* StocksCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EE968B28BE6CB400C3BFFD /* StocksCollectionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		47ECB4D72896DBAA00566D24 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		47ECB4D92896F9FB00566D24 /* StocksCollectionView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StocksCollectionView + Extension.swift"; sourceTree = "<group>"; };
 		47ECB4DC2896FA2B00566D24 /* StocksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksCollectionViewCell.swift; sourceTree = "<group>"; };
+		47EE968B28BE6CB400C3BFFD /* StocksCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksCollectionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				47ECB4DC2896FA2B00566D24 /* StocksCollectionViewCell.swift */,
+				47EE968B28BE6CB400C3BFFD /* StocksCollectionViewModel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				4761B5DB2895BFCC007FFB91 /* CryptoTableView + Extension.swift in Sources */,
 				4761B5E22895C2B1007FFB91 /* CryptoViewModel.swift in Sources */,
 				47ECB4DD2896FA2B00566D24 /* StocksCollectionViewCell.swift in Sources */,
+				47EE968C28BE6CB400C3BFFD /* StocksCollectionViewModel.swift in Sources */,
 				478ACEF428955B7000EE31B6 /* UIColor + Extension.swift in Sources */,
 				478ACECF2895502000EE31B6 /* AppDelegate.swift in Sources */,
 				47ECB4D82896DBAA00566D24 /* APIKeys.swift in Sources */,

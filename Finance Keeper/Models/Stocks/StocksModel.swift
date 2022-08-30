@@ -11,25 +11,21 @@
 
 import Foundation
 
-struct StocksModel: Codable {
-    let quoteSummary: QuoteSummary
+struct StocksTestModel: Codable {
+    let data: DataClass
 }
 
-struct QuoteSummary: Codable {
-    let result: [StockResult]
+struct DataClass: Codable {
+    let table: Table
+    let totalrecords: Int
 }
 
-struct StockResult: Codable {
-    let price: Price
+struct Table: Codable {
+    let rows: [Headers]
 }
 
-struct Price: Codable {
-    let exchangeDataDelayedBy: Int
-    let exchange, exchangeName, shortName, longName, currency, currencySymbol, symbol, quoteSourceName: String
-    let regularMarketPrice, regularMarketChangePercent: PostMarketChange
-}
-
-struct PostMarketChange: Codable {
-    let raw: Double
-    let fmt: String
+struct Headers: Codable {
+    let symbol, name, lastsale, netchange: String
+    let pctchange, marketCap: String
+    let url: String?
 }
