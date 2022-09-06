@@ -36,7 +36,7 @@ final class StocksViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 20
-        layout.itemSize = CGSize(width: (view.frame.size.width - 40), height: (view.frame.size.height / 5))
+        layout.itemSize = CGSize(width: (view.frame.size.width - 40), height: (view.frame.size.height / 4))
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         

@@ -11,7 +11,7 @@
 
 import Foundation
 
-protocol DetailsViewModelProtocol {
+protocol DetailsViewModelProtocol: AnyObject {
     var article: Article { get }
     init(article: Article)
 }

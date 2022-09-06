@@ -145,7 +145,7 @@ final class StocksCollectionViewCell: UICollectionViewCell {
             stockPriceLabel.widthAnchor.constraint(equalToConstant: 130),
             stockPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            percentChangedLabel.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 20),
+            percentChangedLabel.topAnchor.constraint(equalTo: stockPriceLabel.bottomAnchor, constant: 10),
             percentChangedLabel.trailingAnchor.constraint(equalTo: stockPriceLabel.trailingAnchor),
             
             netChangedLabel.topAnchor.constraint(equalTo: percentChangedLabel.bottomAnchor),

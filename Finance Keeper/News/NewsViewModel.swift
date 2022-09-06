@@ -11,7 +11,7 @@
 
 import Foundation
 
-protocol NewsViewModelProtocol {
+protocol NewsViewModelProtocol: AnyObject {
     var news: Box<NewsModel> { get }
     func numberOfRows() -> Int
     func fetchNews(completion: @escaping () -> Void)
