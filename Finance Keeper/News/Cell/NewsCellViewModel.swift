@@ -11,7 +11,7 @@
 
 import Foundation
 
-protocol NewsCellViewModelProtocol {
+protocol NewsCellViewModelProtocol: AnyObject {
     var article: Box<Article> { get }
     func detailsViewModelProtocol() -> DetailsViewModelProtocol
     init(article: Article)

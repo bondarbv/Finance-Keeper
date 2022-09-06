@@ -11,7 +11,7 @@
 
 import Foundation
 
-protocol StocksViewModelProtocol {
+protocol StocksViewModelProtocol: AnyObject {
     var stocks: Box<StocksModel> { get }
     func numberOfRows() -> Int
     func fetchStocks(completion: @escaping () -> Void)

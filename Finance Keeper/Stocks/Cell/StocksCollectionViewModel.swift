@@ -11,7 +11,7 @@
 
 import Foundation
 
-protocol StocksCollectionViewModelProtocol {
+protocol StocksCollectionViewModelProtocol: AnyObject {
     var stock: Headers { get }
     init(stock: Headers)
 }

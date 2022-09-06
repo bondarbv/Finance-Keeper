@@ -12,7 +12,7 @@
 import Foundation
 import UIKit
 
-protocol CryptoViewModelProtocol {
+protocol CryptoViewModelProtocol: AnyObject {
     var crypto: CryptoModel { get }
     var filteredCrypto: CryptoModel { get set }
     func numberOfRows() -> Int

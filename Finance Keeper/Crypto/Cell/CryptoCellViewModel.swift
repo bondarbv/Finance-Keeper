@@ -12,7 +12,7 @@
 import Foundation
 import UIKit.UIColor
 
-protocol CryptoCellViewModelProtocol {
+protocol CryptoCellViewModelProtocol: AnyObject {
     var crypto: Box<CryptoDataModel> { get }
     var priceChangePercentColor: UIColor? { get }
     func fetchCryptoData(completion: @escaping () -> Void)
